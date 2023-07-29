@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dự Án Mẫu 2022</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font google -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;1,100;1,300;1,400;1,500&display=swap" rel="stylesheet">
+    <style>
+        body{
+            font-family: 'Roboto', sans-serif;
+
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container max-w-full">
+        <header class="w-full mx-auto pb-3 bg-[#FFC0CB]">
+            <div class="flex justify-between items-center ">
+                <div class="logo w-[150px] ml-5">
+                    <a href="index.html"><img class="bg-clip-content" src="asset/images/logo_gence.webp" alt=""></a>
+                </div>
+                <form action="" class="flex ml-[-30px] relative ">
+                    <input class="border border-red-400 py-[6px] rounded-[30px] w-[650px] px-3 text-sm "
+                        placeholder="Bạn muốn tìm gì hôm nay..."
+                        type="text">
+                    <button class="hover:fill-[#FFC0CB]">
+                        <img class="absolute right-3 top-2" src="asset/icon/search.svg" alt="">
+                    </button>
+                </form>
+                <div class="flex justify-between items-center mr-[130px] ">
+                    <button class="flex items-center space-x-2 ml-5 bg-[#FFFFFF] px-2 rounded-[20px] ">
+                        <img class="" src="asset/icon/cart2.svg" alt="">
+                    </button>
+                </div>
+            </div>
+            <div class="menu w-full ">
+                <nav class="ml-8 flex justify-between items-center " >
+                    <div>
+                        <ul class="flex items-center space-x-10 text-[#FFFFFF] text-xl">
+                            <li class="">
+                                <a href="index.html" class="flex space-x-2 items-center">
+                                    <img src="asset/icon/house-heart-fill.svg" alt="">
+                                    <span class="hover:text-red-400 hover:underline">Trang Chủ</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="product.html" class="flex space-x-2 items-center">
+                                    <img src="asset/icon/grid.svg" alt="">
+                                    <span class="hover:text-red-400 hover:underline">Sản Phẩm</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="information.html" class="flex space-x-2 items-center">
+                                    <img src="asset/icon/newspaper.svg" alt="">
+                                    <span class="hover:text-red-400 hover:underline">Thông tin </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="about.html" class="flex space-x-2 items-center">
+                                    <img src="asset/icon/person-rolodex.svg" alt="">
+                                    <span class="hover:text-red-400 hover:underline">Giới Thiệu</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="contact.html" class="flex space-x-2">
+                                    <img src="asset/icon/person-lines-fill.svg" alt="">
+                                    <span class="hover:text-red-400 hover:underline">Hỗ Trợ</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- <div class="w-[170px] mr-20 flex justify-between items-center ">
+                        <a href="signin.html"
+                        class="px-3 py-2 bg-[#FFFFFF] border text-[#FFC0CB] rounded-[5px] hover:text-[#FFFFFF] hover:bg-[#FFC0CB]">
+                            Sign in
+                        </a>
+                        <a href=""
+                        class="px-3 py-2 bg-[#FFFFFF] border text-[#FFC0CB] rounded-[5px] hover:text-[#FFFFFF] hover:bg-[#FFC0CB]">
+                            Sign up
+                        </a>
+                    </div> -->
+                </nav>
+            </div> <!-- End .menu-->
+        </header>
+        <div class="banner min-h-[500px] w-full mt-4">
+            <a href="">
+                <img class="w-full h-full" src="asset/images/banner2.jpg" alt="">
+            </a>
+        </div> <!-- End .banner-->
+        <div class="p_shop w-5/6 mx-auto mt-10 text-center text-2xl font-semibold text-[#F54748] ">
+            <span class="italic">GENCE - THỜI TRANG CÔNG SỞ</span>
+        </div> <!-- End .p_shop-->
+        <section class="content flex w-11/12 mt-10 mx-auto">
+            <div class="grid grid-cols-3 gap-1">
+                <div class="content-item ">
+                    <img class="w-full " src="asset/images/cap_nam_cao_cap.webp" alt="">
+                    <p class="px-2">Tên</p>
+                    <p class="px-2">Giá</p>
+                    <p class="px-2">Giá KM</p>
+                </div> <!-- End .content-item-->
+                <div class="content-item">
+                    <img class="w-full " src="asset/images/cap_nam_cao_cap.webp" alt="">
+                    <p class="px-2">Tên</p>
+                    <p class="px-2">Giá</p>
+                    <p class="px-2">Giá KM</p>
+                </div> <!-- End .content-item-->
+                <div class="content-item ">
+                    <img class="w-full " src="asset/images/cap_nam_cao_cap.webp" alt="">
+                    <p class="px-2">Tên</p>
+                    <p class="px-2">Giá</p>
+                    <p class="px-2">Giá KM</p>
+                </div> <!-- End .content-item-->
+                <div class="content-item">
+                    <img class="w-full " src="asset/images/cap_nam_cao_cap.webp" alt="">
+                    <p class="px-2">Tên</p>
+                    <p class="px-2">Giá</p>
+                    <p class="px-2">Giá KM</p>
+                </div> <!-- End .content-item-->
+                
+            </div> <!-- End grid-->
+            <aside class="w-11/12 ">
+                <div class="form w-full">
+                    <p class="p-2 text-center text-xl font-sans font-semibold text-[#F54748] border-b">TÀI KHOẢN</p>
+                    <form action="" class="w-full mt-2">
+                        <label for="username">Tên Đăng Nhập</label>
+                        <input class="border mt-1 mb-2 w-full px-2 py-1 text-[#4A5568] rounded-md" type="text" id="username" placeholder="Tên đăng nhập">
+
+                        <label for="password">Mật Khẩu</label> 
+                        <input class="border mt-1 w-full px-2 py-1 rounded-md" type="password" id="password" placeholder="Mật khẩu">
+
+                        <input class="mt-4" type="checkbox" name="" id="save_user">
+                        <label for="save_user">Ghi nhớ tài khoản?</label> <br>
+                        <div class="btn_sign_in mx-auto mt-2 text-center">
+                            <input type="submit" name="sign_in" value="Đăng Nhập"
+                               class="border px-3 py-2 rounded-md hover:bg-[#FFEEEE] hover:text-[#F54748]" >
+                        </div> <!-- End .btn_sign_in-->
+                        <ul class=" mt-2 space-y-1">
+                            <li><a href="" class="hover:text-[#F54748] hover:underline">Quên mật khẩu?</a></li>
+                            <li><a href="" class="hover:text-[#F54748] hover:underline">Đăng kí tài khoản</a></li>
+                        </ul>
+                    </form>
+                </div> <!-- End .form-->
+                <hr>
+                <div class="category w-full mt-5">
+                    <p class="p-2 text-center text-xl font-sans font-semibold text-[#F54748] border-b">
+                        DANH MỤC
+                    </p>
+                    <ul class="category_list">
+                        <li class="">
+                            <a class="block border-b p-2 text-lg hover:bg-[#FFEEEE] hover:text-[#F54748]" href="">Túi Đeo Chéo </a>
+                        </li>
+                        <li class="">
+                            <a class="block border-b p-2 text-lg hover:bg-[#FFEEEE] hover:text-[#F54748]" href="">Túi Đeo Chéo </a>
+                        </li>
+                        <li class="">
+                            <a class="block border-b p-2 text-lg hover:bg-[#FFEEEE] hover:text-[#F54748]" href="">Túi Đeo Chéo </a>
+                        </li>
+                        <li class="">
+                            <a class="block border-b p-2 text-lg hover:bg-[#FFEEEE] hover:text-[#F54748]" href="">Túi Đeo Chéo </a>
+                        </li>
+                    </ul> <!-- End .category_list-->
+                    <div class="form_cate mt-2 p-2 bg-[#FFEEEE]">
+                        <form action="" method="get" class="flex space-x-2">
+                            <input class="border w-full px-2 py-1 "
+                                  type="text" placeholder="Tìm kiếm tên danh mục" >
+                            <input class="border px-2 py-1 text-[#F54748] bg-[#FFFFFF] hover:bg-[#FFC0CB]"
+                                   type="submit" value="Tìm kiếm">
+                        </form>
+                    </div>
+                </div> <!-- End .category-->
+                <div class="top_love w-full mt-5">
+                    <p class="p-2 text-center text-xl font-sans font-semibold text-[#F54748]">TOP 10 YÊU THÍCH </p>
+                    <ul class="category_list">
+                        <li class="flex items-center space-x-2">
+                            <img class="w-[50px] border rounded-md"
+                                 src="asset/images/tui-deo-cheo-nam.webp" alt="">
+                            <a class="block w-full border-red-400 p-2 text-lg hover:underline hover:text-[#F54748]" href="">Túi Đeo Chéo </a>
+                        </li>
+                        <li class="flex items-center space-x-2">
+                            <img class="w-[50px] border rounded-md"
+                                 src="asset/images/tui-deo-cheo-nam.webp" alt="">
+                            <a class="block w-full border-red-400 p-2 text-lg hover:underline hover:text-[#F54748]" href="">Túi Đeo Chéo Nam </a>
+                        </li>
+                        <li class="flex items-center space-x-2">
+                            <img class="w-[50px] border rounded-md"
+                                 src="asset/images/tui-deo-cheo-nam.webp" alt="">
+                            <a class="block w-full border-red-400 p-2 text-lg hover:underline hover:text-[#F54748]" href="">Ví Da Nam </a>
+                        </li>
+                        <li class="flex items-center space-x-2">
+                            <img class="w-[50px] border rounded-md"
+                                 src="asset/images/tui-deo-cheo-nam.webp" alt="">
+                            <a class="block w-full border-red-400 p-2 text-lg hover:underline hover:text-[#F54748]" href="">Thắt Lưng Da </a>
+                        </li>
+                    </ul> <!-- End .category_list-->
+                    <div class="form_cate mt-2 p-2 bg-[#FFEEEE]">
+                        <form action="" method="get" class="flex space-x-2">
+                            <input class="border w-full px-2 py-1"
+                                  type="text" placeholder="Tìm kiếm top yêu thích" >
+                            <input class="border px-2 py-1 text-[#F54748] bg-[#FFFFFF] hover:bg-[#FFC0CB]"
+                                   type="submit" value="Tìm kiếm">
+                        </form>
+                    </div>
+                </div> <!-- End .top_love-->
+            </aside>
+        </section> <!-- End .content-->
+        <footer>
+            <p>
+                
+            </p>
+        </footer>
+    </div><!-- End .container-->
+</body>
+
+</html>
