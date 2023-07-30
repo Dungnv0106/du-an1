@@ -16,9 +16,24 @@ if (isset($_SESSION['user'])) {
         transition: 0.3s all;
 
     }
+
     .content-item:hover .add-to-cart {
         opacity: 1;
-        transform: translateY(0) ;
+        transform: translateY(0);
+    }
+
+    .view-detail {
+        opacity: 0;
+        transform: translateY(40px);
+        transition: 0.3s all;
+        bottom: 0px;
+        left: 130px
+    }
+
+    .content-item:hover .view-detail {
+        opacity: 1;
+        transform: translateY(0);
+
     }
 </style>
 <script>
@@ -84,29 +99,38 @@ if (isset($_SESSION['user'])) {
 <section class="content w-11/12 grid grid-cols-[75%25%] mt-8 mx-auto gap-2 ">
     <div class="grid grid-cols-3 gap-x-4 gap-y-6 ">
         <?php foreach ($new_pro as $pro) { ?>
-            <div class="content-item min-h-[550px] text-center space-y-2 overflow-hidden box-border relative ">
-                <a href="index.php?act=detail_pro&pro_id=<?php echo $pro['pro_id'] ?>">
-                    <img title="<?php echo $pro['pro_name'] ?>"
-                        class="w-full h-[340px] rounded-md bg-clip-padding bg-gray-200 duration-500 hover:scale-x-105 hover:scale-y-105  " src="<?php echo substr($pro['pro_image'], 3); ?>" alt="">
-                </a>
-                <div class="min-h-[150px] ">
+            <div class="content-item min-h-[480px] text-center space-y-2 overflow-hidden box-border relative ">
+                <div class="relative text-center">
+                    <a class="" href="index.php?act=detail_pro&pro_id=<?php echo $pro['pro_id'] ?>">
+                        <img title="<?php echo $pro['pro_name'] ?>" class="w-full h-[340px] rounded-md bg-clip-padding bg-gray-200 duration-500 hover:scale-x-105 hover:scale-y-105  " src="<?php echo substr($pro['pro_image'], 3); ?>" alt="">
+    
+                    </a>
+                    <a class="view-detail absolute mx-auto text-center" href="index.php?act=detail_pro&pro_id=<?php echo $pro['pro_id'] ?>">
+                        <img class="border border-white-400 bg-[#FFFFFF] hover:bg-[#EEEEEE] rounded-[4px] px-4 py-1" title="View Detail" src="./asset/icon/eye-fill.svg" alt="">
+                    </a>
+                </div >
+                <div class="min-h-[120px]">
+
                     <p class="text-slate-400"><?php foreach ($list_cate as $cate) {
                                                     echo ($cate['cate_id'] == $pro['cate_id'] ? $cate['cate_name'] : ""); // Hiển thị category
                                                 } ?></p>
                     <!-- <p><?php echo ($list_cate['cate_id'] == $pro['cate_id'] ? $list_cate['cate_name'] : "") ?></p> -->
+
                     <a href="index.php?act=detail_pro&pro_id=<?php echo $pro['pro_id'] ?>">
-                        <p class="text-teal-800 text-xl fold-semibold   "><?php echo $pro['pro_name'] ?></p>
+                        <p class="text-teal-800 text-[21px] fold-semibold text-left pl-3 "><?php echo $pro['pro_name'] ?></p>
                     </a>
 
                     <p class="px-2 text-red-600 font-bold  ">
-                        <?php echo $pro['pro_price'] . " đ" ?>
+                        <?php echo $pro['pro_price'] ?> <span class="underline text-sm ml-[3px] absolute">đ</span>
                     </p>
-                    <p class="px-2  ">
+
+                    <!-- <p class="px-2  ">
                         Giá KM
-                    </p>
+                    </p> -->
                 </div>
                 <button class="add-to-cart w-full py-2 rounded-[4px] border font-[500] text-center hover:bg-[#FFA07A] hover:text-white">
                     Buy Now
+
                 </button>
             </div>
             <!-- End .content-item-->
