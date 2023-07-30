@@ -144,7 +144,7 @@ if (isset($_SESSION['user'])) {
             <?php
             if (isset($_SESSION['user'])) {
             ?>
-                <p class="my-2 text-center"> Xin Chào <mark class="font-semibold"><?php echo $_SESSION['user']['user_name'] ?></mark></p>
+                <p class="my-2 text-center"> Xin Chào <span class="font-semibold"><?php echo $_SESSION['user']['user_name'] ?></span></p>
 
                 <ul>
                     <li>

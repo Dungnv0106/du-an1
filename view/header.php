@@ -60,7 +60,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="index.php?act=" class="flex space-x-2 items-center">
+                                <a href="index.php?act=list_product" class="flex space-x-2 items-center">
                                     <img src="asset/icon/grid.svg" alt="">
                                     <span class="hover:text-red-400 hover:underline">Sản Phẩm</span>
                                 </a>

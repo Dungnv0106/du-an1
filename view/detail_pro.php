@@ -50,8 +50,8 @@
         });
     </script>
     <div class="comment w-5/6 mt-10 mx-auto">
-        <p class="text-[22px] font-[500] text-gray-700 border pl-3 rounded-md py-2 bg-[#FFC0CB]">Bình luận</p>
-        <div id="binhLuan" class="comment-content w-full border border-gray-300 mt-2 rounded-md min-h-[250px]">
+        <p class="text-[22px] font-[500] text-gray-700 pl-3 rounded-md py-2 bg-[#FFC0CB]">Bình luận</p>
+        <div id="binhLuan" class="comment-content w-full mt-2 rounded-xl min-h-[250px]">
 
         </div>
     </div>

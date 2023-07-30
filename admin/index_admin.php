@@ -5,6 +5,7 @@
     include "../model/model_category.php";
     include "../model/model_product.php";
     include "../model/model_user.php";
+    include "../model/model_comment.php";
     include "header.php";
     
 // Controller
@@ -165,6 +166,22 @@
             //     $accounts = getAllAccount();
             //     include "accounts/list_acc.php";
             //     break;    
+            case 'comment': 
+                $list_comment = get_all_comment(0);
+                $list_user = queryAllUser(); 
+                $list_pro = queryAllPro('', 0);
+                include "./comments/list_comment.php";
+                break;
+            case 'delete_comment': 
+                if(isset($_GET['comment_id']) && ($_GET['comment_id'] > 0)) {
+                    $comment_id = $_GET['comment_id'];
+                    deleteComment($comment_id);
+                }
+                $list_comment = get_all_comment(0);
+                $list_user = queryAllUser(); 
+                $list_pro = queryAllPro('', 0);
+                include "./comments/list_comment.php";
+                break;
             default:
                 include "body.php";
                 break;

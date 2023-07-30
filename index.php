@@ -8,6 +8,7 @@ include "./model/model_user.php";
 include "./model/model_comment.php";
 include "view/header.php";
 
+// echo $_SERVER['HTTP_REFERER'];
 
 $new_pro = query_pro_home();
 $list_cate = queryAll();
@@ -21,18 +22,15 @@ if (isset($_GET['act']) && !empty($_GET['act'])) {
         case 'list_product':
             if (isset($_POST['cate_name']) && ($_POST['cate_name'] != "")) {
                 $name_cate = $_POST['cate_name']; // lấy tên ở ô tìm kiếm
-
             } else {
                 $name_cate = "";
             }
-
             if (isset($_GET['cate_id']) && ($_GET['cate_id'] > 0)) {
                 $cate_id = $_GET['cate_id'];
                 $cate_name = query_cate_name($cate_id); // Lấy tên danh mục sản phẩm theo id
             } else {
                 $cate_id = 0;
             }
-
             $list_cate = queryAll(); // Lấy tất cả danh mục
             $list_product = queryAllPro($name_cate, $cate_id); // Lấy sản phẩm theo danh mục
             include "view/list_product.php";
@@ -67,11 +65,10 @@ if (isset($_GET['act']) && !empty($_GET['act'])) {
 
                 //     }
                 // }
+                
                 add_user($email, $fullName, $password, $repass);
-                // $list_user = queryAllUser();
-                // setcookie("thong_bao", "Đăng kí tài khoản thành công. Vui lòng đăng nhập để mua hàng", time() + 5);
                 $thong_bao = "<span class='mt-3 font-[500] text-red-500'>Đăng kí tài khoản thành công. Vui lòng đăng nhập để mua hàng</span>";
-                // header("Location: index.php?act");
+                // header("Location:".$_SERVER['HTTP_REFERER']);
             }
             include "view/account/signup.php";
 
