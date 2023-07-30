@@ -11,14 +11,17 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;1,100;1,300;1,400;1,500&display=swap" rel="stylesheet">
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script> -->
     <style>
         body {
             font-family: 'Roboto', sans-serif;
 
         }
+
         .content-item img {
             transition: transform 0.5s ease;
         }
+
         .content-item:hover img {
             opacity: 0.8;
         }

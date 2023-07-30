@@ -50,9 +50,7 @@
             <p class="px-2 text-red-600 font-bold">
                 <?php echo $pro['pro_price'] ." đ"?>
             </p>
-            <p class="px-2">
-                Giá KM
-            </p>
+            
         </div> <!-- End .content-item-->
         <?php    
         }

@@ -3,17 +3,17 @@
 // show_array($similar_pro);
 // show_array($list_cate);
 ?>
+<!-- jquery -->
 <div class="container max-w-full  ">
     <div class="content w-5/6 mt-10 mx-auto grid grid-cols-[50%50%]">
         <div class="image_pro">
-            <img class=" w-11/12 mx-auto" src="<?php echo substr($detail_pro['pro_image'], 3); ?>" alt="">
+            <img class=" w-11/12 mx-auto" title="<?php echo $detail_pro['pro_name'] ?>" src="<?php echo substr($detail_pro['pro_image'], 3); ?>" alt="">
             <!-- <img class=" w-11/12 border mx-auto" src="asset/images/that_lung_nam1.webp" alt=""> -->
             <!-- <img class="border" src="asset/images/that_lung_nam1.webp" alt=""> -->
         </div>
 
         <div class="detail_pro text-gray-700">
             <p class="text-[19px] text-gray-500">
-
                 <a href="index.php" class="hover:text-black">TRANG CHỦ /</a>
                 <a href="index.php?act=list_product&cate_id=<?php foreach ($list_cate as $cate) {
                                                                 echo ($cate['cate_id'] == $detail_pro['cate_id']) ? $cate['cate_id'] : "";
@@ -38,14 +38,24 @@
                     xung quanh và màn hình hiển thị độ phân giải là lý do khiến màu của ví đậm hơn hoặc nhạt hơn so với
                     bên ngoài.</p>
             </div>
-
-
         </div>
     </div> <!-- End . content -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            $('#binhLuan').load('view/comments/comment_form.php', {
+                pro_id : <?php echo $detail_pro['pro_id']?>
+            })
+        });
+    </script>
     <div class="comment w-5/6 mt-10 mx-auto">
         <p class="text-[22px] font-[500] text-gray-700 border pl-3 rounded-md py-2 bg-[#FFC0CB]">Bình luận</p>
-        
+        <div id="binhLuan" class="comment-content w-full border border-gray-300 mt-2 rounded-md min-h-[250px]">
+
+        </div>
     </div>
+    <!-- End .comment -->
     <div class="similar_pro w-5/6 mt-10 mx-auto">
         <p class="text-[22px] font-bold text-gray-700 mb-5">SẢN PHẨM TƯƠNG TỰ</p>
         <div class="grid grid-cols-5 gap-4">

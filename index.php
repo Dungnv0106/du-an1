@@ -1,10 +1,11 @@
 <?php
 session_start();
 // session_destroy();
-include "model/connect.php";
-include "model/model_category.php";
-include "model/model_product.php";
-include "model/model_user.php";
+include "./model/connect.php";
+include "./model/model_category.php";
+include "./model/model_product.php";
+include "./model/model_user.php";
+include "./model/model_comment.php";
 include "view/header.php";
 
 
@@ -105,7 +106,6 @@ if (isset($_GET['act']) && !empty($_GET['act'])) {
             include "view/account/forgot_password.php";
             break;
         case 'edit_account':
-
             if (isset($_POST['edit_acc']) && ($_POST['edit_acc'])) {
                 $email = $_POST['email'];
                 $fullName = $_POST['fullName'];
@@ -125,8 +125,18 @@ if (isset($_GET['act']) && !empty($_GET['act'])) {
             session_unset();
             // header("Location: index.php");
             include "view/body.php";
-
             break;
+        case 'post_comment': 
+            if (isset($_POST['post_comment']) && ($_POST['post_comment'])) {
+                $content = $_POST['content'];
+                $pro_id = $_POST['pro_id'];
+                $user_id = $_SESSION['user']['user_id'];
+                $comment_date = date('d/m/Y h:i a');
+                add_comment($content, $user_id, $pro_id, $comment_date);
+                header("Location: index.php?act=detail_pro&pro_id=".$pro_id);
+            }
+            include "view/comments/comment_form.php";
+            break;    
         case 'introduction':
             include "view/introduction.php";
             break;
