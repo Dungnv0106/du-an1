@@ -44,7 +44,7 @@
                     </button>
                 </form>
                 <div class="flex justify-between items-center mr-[130px] ">
-                    <button class="flex items-center space-x-2 ml-5 bg-[#FFFFFF] px-2 rounded-[20px] ">
+                    <button class="flex items-center space-x-2 ml-5 bg-[#FFFFFF] px-2 rounded-[20px] btn ">
                         <img class="" src="asset/icon/cart2.svg" alt="">
                     </button>
                 </div>
