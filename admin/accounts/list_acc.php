@@ -33,7 +33,13 @@ $condition = false;
                 <td class="pl-[20px] hover:bg-[#FFEEEE]" title="<?php echo $account['user_role'] ?>"><?php echo $account['user_role'] == 1 ? "Admin" : "Member" ?></td>
                 <td class="text-center">
                     <!-- <a href="index_admin.php?act=edit_account&user_id=<?php echo $account['user_id'] ?>">Sửa</a> -->
+                    <?php 
+                        if($account['user_role'] != 1) {
+                    ?>
                     <a onclick="return confirm('Bạn có chắc chắn muốn xóa?')" href="index_admin.php?act=delete_account&user_id=<?php echo $account['user_id'] ?>">Xóa</a>
+                    <?php        
+                        } 
+                    ?>
                 </td>
             </tr>
         <?php

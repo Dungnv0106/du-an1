@@ -35,6 +35,7 @@
             <td class="w-[15%]">Tên Danh Mục</td>
             <td class="w-[22%]">Hình Ảnh</td>
             <td class="w-[8%]">Đơn Giá</td>
+            <td class="w-[8%]">Số Lượng</td>
             <!-- <td class="text-center">Giảm Giá</td> -->
             <!-- <td class="text-center w-[110px]">Ngày Tạo</td> -->
             <td class="w-[10%]">Chất liệu</td>
@@ -57,6 +58,7 @@
             <td class=""><img class="w-11/12 mx-auto py-1" src="<?php echo $pro['pro_image']?>" alt=""></td>
 
             <td class="text-center"><?php echo $pro['pro_price']." <span class='font-[500]'>VNĐ</span>"?></td>
+            <td class="text-center">11</td>
             <!-- <td class="text-center"><?php echo $pro['giam_gia']." VNĐ" ?></td> -->
             <td class="px-2"><?php echo $pro['chat_lieu']?></td>
             <td class="px-2"><?php echo $pro['pro_desc']?></td>
