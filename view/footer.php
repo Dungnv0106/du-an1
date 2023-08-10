@@ -31,7 +31,10 @@
             </ul>
         </div>
         <div>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis libero veniam fugiat ipsa, labore corporis eos numquam, nobis explicabo quas beatae repudiandae ipsum vitae reprehenderit alias rerum nihil esse molestias?</p>
+            <p>
+                GENCE là thương hiệu phụ kiện đồ da công sở cao cấp lấy điểm nhấn từ sự sang trọng, lịch sự hết sức gần gũi với vóc dáng của người Việt Nam.
+                Những sản phẩm cặp da, túi da, clutch… được chính bàn tay, khối óc của người thợ Việt Nam có tay nghề cao, tâm huyết, tỉ mỉ trong từng công đoạn sản xuất.
+            </p>
         </div>
         <div>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis libero veniam fugiat ipsa, labore corporis eos numquam, nobis explicabo quas beatae repudiandae ipsum vitae reprehenderit alias rerum nihil esse molestias?</p>
