@@ -96,14 +96,14 @@
 
     <div class="container max-w-full mx-auto mb-[100px]">
         <header class=" w-full mx-auto border bg-[#FFFFFF] min-h-[60px]">
-            <div class="flex items-center">
+            <div class="flex items-center border ">
                 <div class="logo">
                     <a href="index.php">
                         <img class="w-[150px]" src="./asset/images/logo.webp" alt="">
                     </a>
                 </div>
                 <!-- End .logo -->
-                <nav>
+                <nav class="ml-8 flex justify-between items-center ">
                     <div>
                         <ul class="menu flex items-center space-x-4 text-xl pl-5">
                             <li class="">
@@ -144,8 +144,10 @@
                         </ul>
                     </div>
                 </nav>
-                <div class="form">
-
-                </div>
             </div>
+            <!-- <div class="w-full ">
+                
+                <div class="form">
+                </div>
+            </div> -->
         </header>
