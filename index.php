@@ -12,7 +12,9 @@ include "view/header.php";
 
 $new_pro = query_pro_home();
 $list_cate = queryAll();
+if(isset($list_cate)) $_SESSION['list_cate'] = $list_cate;
 $list_top_10 = query_pro_top10();
+$get_four_cate = get_four_cate();
 if (isset($_GET['act']) && !empty($_GET['act'])) {
     $act = $_GET['act'];
     switch ($act) {
