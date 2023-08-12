@@ -3,7 +3,7 @@
 // echo $new_pro[0]['pro_image'];
 // show_array($list_cate);
 // show_array($list_top_10);
-
+    // show_array($get_four_cate);
 if (isset($_SESSION['user'])) {
     // echo ("body");
     // show_array($_SESSION['user']);
@@ -35,64 +35,85 @@ if (isset($_SESSION['user'])) {
         transform: translateY(0);
 
     }
+    .slideshow {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    /* overflow: hidden; */
+    }
+
+    .slideshow img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+    }
+
+    .slideshow img.active {
+    opacity: 1;
+    }
 </style>
-<script>
-    var images = [];
-    var index = 1;
-
-    function loadAnh() {
-        for (var i = 1; i < 4; i++) {
-            images[i] = new Image();
-            images[i].src = "asset/images/banner" + i + ".jpg";
-        }
-        auto();
-    }
-
-    function auto() {
-        document.getElementById("anh").src = images[index].src;
-        if (index == 3) {
-            index = 1;
-        } else {
-            index++;
-        }
-        setTimeout(auto, 10000);
-    }
-
-    function next() {
-        index++;
-        if (index >= images.length) {
-            index = 1;
-        }
-        document.getElementById("anh").src = images[index].src;
-    }
-
-    function prev() {
-        index--;
-        if (index < 1) {
-            index = images.length - 1;
-        }
-        document.getElementById("anh").src = images[index].src;
 
 
-    }
-</script>
-
-<div class="banner relative min-h-[700px] w-full mt-2">
-    <button class="absolute top-1/2" onclick="prev();">
-        <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="#FFFFFF" class="hover:fill-[#000000] bi bi-arrow-left-circle " viewBox="0 0 16 16">
+<div class="banner relative min-h-[700px] w-full">
+    <!-- <button class="absolute top-1/2" onclick="prev()">
+        <svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" fill="#DCDCDC" class="hover:fill-[#363636] bi bi-arrow-left-circle " viewBox="0 0 16 16">
             <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-4.5-.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z" />
         </svg>
-    </button>
-    <a href="" class="">
-        <img title="banner" id="anh" class="w-full h-full" src="../asset/images/banner2.jpg" alt="">
-    </a>
-    <button class="absolute top-1/2 right-0" onclick="next();">
-        <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="#FFFFFF" class="hover:fill-[#000000] bi bi-arrow-right-circle" viewBox="0 0 16 16">
+    </button> -->
+    <div class="slideshow">
+        <img id="anh" src="./asset/images/banner/banner1.jpg" alt="">
+        <img id="anh" src="./asset/images/banner/banner2.jpg" alt="">
+    </div>
+    
+    <!-- <button class="absolute top-1/2 right-0" onclick="next()">
+        <svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" fill="#DCDCDC" class="hover:fill-[#363636] bi bi-arrow-right-circle" viewBox="0 0 16 16">
             <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z" />
         </svg>
-    </button>
+    </button> -->
 </div>
 <!-- End .banner-->
+<div class="w-5/6 mx-auto space-y-2">
+    <p class="text-[25px]">ABOUT</p>
+    <p class="text-[45px]">
+        GENCE - GENTLEMAN’S OFFICE
+    </p>
+    <p class="text-[#4F4F4F] leading-8">
+    GENCE là thương hiệu phụ kiện đồ da công sở cao cấp lấy điểm nhấn từ sự sang trọng, lịch sự hết sức gần gũi với vóc dáng của người Việt Nam.
+    Những sản phẩm cặp da, túi da, clutch… được chính bàn tay, khối óc của người thợ Việt Nam có tay nghề cao, tâm huyết, tỉ mỉ trong từng công đoạn sản xuất.
+    Kỹ thuật dựng form dáng và sản xuất theo đúng trình tự tiêu chuẩn vô cùng chặt chẽ, chuyên nghiệp để tạo ra những sản phẩm “Made in Viet Nam” chất lượng.
+    </p>
+</div>
+
+<div class="category w-5/6 mx-auto min-h-[340px] mt-20 space-y-8">
+    <p class="text-3xl text-center ">DANH MỤC SẢN PHẨM </p>
+    <div class="row">
+
+    </div>
+    <div class="grid grid-cols-4 gap-6">
+        <?php
+        foreach($get_four_cate as $cate) {
+        ?>
+        <div class="item relative">
+                <a class="" href="index.php?act=list_product&cate_id=<?php echo $cate['cate_id'] ?>">
+                    <img class="absolute hover:scale-110 transition-transform duration-500 ease-in-out" src="./asset/images/cate_tui_deo_cheo.webp" alt="">
+                    <p class="absolute top-[200px] left-[10px] text-[20px] text-[#363636]"><?php echo $cate['cate_name']?></p>
+                </a> 
+            </div>
+            <!-- End .item -->
+       
+            
+        <?php        
+
+            }
+        ?>
+        
+        
+    </div>
+    
+</div>
+<!-- End .category -->
 <div class="p_shop w-5/6 mx-auto mt-5 text-center text-2xl font-semibold text-[#F54748] ">
     <span class="italic">GENCE - THỜI TRANG CÔNG SỞ</span>
 </div> <!-- End .p_shop-->
@@ -297,3 +318,55 @@ if (isset($_SESSION['user'])) {
         </div> <!-- End .top_love-->
     </aside>
 </section> <!-- End .content-->
+
+<script>
+    
+    // var images = [];
+    // var index = 1;
+
+    // function loadAnh() {
+    //     for (var i = 1; i < 3; i++) {
+    //         images[i] = new Image();
+    //         images[i].src = "./asset/images/banner/banner" + i + ".jpg";
+    //     }
+    //     auto();
+    // }
+
+    // function auto() {
+    //     document.getElementById("anh").src = images[index].src;
+    //     if (index == 2) {
+    //         index = 1;
+    //     } else {
+    //         index++;
+    //     }
+    //     setTimeout(auto, 3000);
+    // }
+
+    // function next() {
+    //     index++;
+    //     if (index >= images.length) {
+    //         index = 1;
+    //     }
+    //     document.getElementById("anh").src = images[index].src;
+    // }
+
+    // function prev() {
+    //     index--;
+    //     if (index < 1) {
+    //         index = images.length - 1;
+    //     }
+    //     document.getElementById("anh").src = images[index].src;
+
+    // }
+
+    var slideIndex = 0;
+        var slides = document.getElementsByClassName("slideshow")[0].getElementsByTagName("img");
+            slides[slideIndex].classList.add("active");
+            setInterval(nextSlide, 5000);
+
+            function nextSlide() {
+                slides[slideIndex].classList.remove("active");
+                slideIndex = (slideIndex + 1) % slides.length;
+                slides[slideIndex].classList.add("active");
+            }
+</script>

@@ -27,5 +27,10 @@
         $delete_cate = "DELETE FROM `categories` WHERE cate_id = '{$cate_id}'";
         connect($delete_cate); 
     }
-
+// Hàm lấy 4 danh mục
+function get_four_cate(){ 
+    $sql = "SELECT * FROM `categories` WHERE 1 ORDER BY cate_id DESC LIMIT 4";
+    $get_four_cate = getAll($sql);
+    return $get_four_cate;
+}
 ?>

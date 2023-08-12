@@ -6,7 +6,7 @@
 <!-- 
     echo ($cate['cate_id'] == $_GET['cate_id']) ? $cate['cate_name'] : ""
  -->
-<div class="container max-w-full">
+<div class="container max-w-full mt-[70px]">
     <div class="w-5/6 mt-10 mx-auto text-xl flex justify-between items-center">
         <div>
             <a href="index.php" class="text-gray-500 hover:text-black">TRANG CHỦ</a>

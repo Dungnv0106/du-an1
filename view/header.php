@@ -1,3 +1,10 @@
+<?php
+
+    if(isset($_SESSION['list_cate'])) {
+        // show_array($_SESSION['list_cate']);
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -25,76 +32,122 @@
         .content-item:hover img {
             opacity: 0.8;
         }
+            .underline-animation {
+                position: relative;
+                display: inline-block;
+            }
+
+        .underline-animation::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -2px;
+            width: 0;
+            height: 2px;
+            background-color: black; /* Màu gạch chân */
+            transition: width 0.5s ease; /* Thời gian và hiệu ứng */
+        }
+
+        .underline-animation:hover::after {
+            width: 100%; /* Khi di chuột vào, gạch chân sẽ mở rộng từ từ */
+        }
+
+        
+
+        .menu a {
+        text-decoration: none;
+        color: #1C1C1C;
+        padding: 10px;
+        }
+        .submenu {
+            display: none;
+            position: absolute;
+            background-color: #FFFFFF;
+            z-index: 999;
+        }
+
+        .submenu li a {
+            min-width: 200px;
+            display: inline-block;
+            padding: 8px 10px;
+            color: #000;
+        }
+        /* .submenu li a:hover {
+            background-color: #E8E8E8;
+        } */
+        .has-submenu:hover .submenu {
+            display: block;
+            animation: fadeIn 0.3s;
+        }
+
+        @keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+        }
     </style>
     <link rel="stylesheet" href="../view/css/home_page.css">
 </head>
 
-<body onload="loadAnh()">
+<body >
 
     <div class="container max-w-full mx-auto mb-[100px]">
-        <header class="w-full mx-auto pb-3 bg-[#FFC0CB]">
-            <div class="flex justify-between items-center ">
-                <div class="logo w-[150px] ml-5">
-                    <a href="index.php"><img class="bg-clip-content" src="asset/images/logo_gence.webp" alt=""></a>
+        <header class=" w-full mx-auto border bg-[#FFFFFF] min-h-[60px]">
+            <div class="flex items-center border ">
+                <div class="logo">
+                    <a href="index.php">
+                        <img class="w-[150px]" src="./asset/images/logo.webp" alt="">
+                    </a>
                 </div>
-                <form action="" class="flex ml-[-30px] relative ">
-                    <input class="border border-red-400 py-[6px] rounded-[30px] w-[650px] px-3 text-sm " placeholder="Bạn muốn tìm gì hôm nay..." type="text">
-                    <button class="hover:fill-[#FFC0CB]">
-                        <img class="absolute right-3 top-2" src="asset/icon/search.svg" alt="">
-                    </button>
-                </form>
-                <div class="flex justify-between items-center mr-[130px] ">
-                    <button class="flex items-center space-x-2 ml-5 bg-[#FFFFFF] px-2 rounded-[20px] btn ">
-                        <img class="" src="asset/icon/cart2.svg" alt="">
-                    </button>
-                </div>
-            </div>
-            <div class="menu w-full ">
+                <!-- End .logo -->
                 <nav class="ml-8 flex justify-between items-center ">
                     <div>
-                        <ul class="flex items-center space-x-10 text-[#FFFFFF] text-xl">
+                        <ul class="menu flex items-center space-x-4 text-xl pl-5">
                             <li class="">
                                 <a href="index.php" class="flex space-x-2 items-center">
-                                    <img src="asset/icon/house-heart-fill.svg" alt="">
-                                    <span class="hover:text-red-400 hover:underline">Trang Chủ</span>
+                                    <p class="underline-animation">Trang Chủ</p>
                                 </a>
                             </li>
-                            <li>
-                                <a href="index.php?act=list_product" class="flex space-x-2 items-center">
-                                    <img src="asset/icon/grid.svg" alt="">
-                                    <span class="hover:text-red-400 hover:underline">Sản Phẩm</span>
+                            
+                            <li class="has-submenu relative">
+                                <a class="underline-animation flex items-center" href="#">
+                                    Danh mục
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-compact-down ml-2" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd" d="M1.553 6.776a.5.5 0 0 1 .67-.223L8 9.44l5.776-2.888a.5.5 0 1 1 .448.894l-6 3a.5.5 0 0 1-.448 0l-6-3a.5.5 0 0 1-.223-.67z"/>
+                                    </svg>
                                 </a>
+                                <ul class="submenu">
+                                    <?php 
+                                        foreach($_SESSION['list_cate'] as $cate) {
+                                    ?>
+                                        <li class="hover:bg-[#E8E8E8]"><a href="index.php?act=list_product&cate_id=<?php echo $cate['cate_id'] ?>"><?php echo $cate['cate_name']?></a></li>
+                                    <?php        
+                                        }
+                                    ?>
+                                </ul>
                             </li>
-                            <li>
+                            <li class="">
                                 <a href="index.php?act=information" class="flex space-x-2 items-center">
-                                    <img src="asset/icon/newspaper.svg" alt="">
-                                    <span class="hover:text-red-400 hover:underline">Thông tin </span>
+                                    <p class="underline-animation">Sản Phẩm</p>
                                 </a>
                             </li>
-                            <li>
-                                <a href="index.php?act=introduction" class="flex space-x-2 items-center">
-                                    <img src="asset/icon/person-rolodex.svg" alt="">
-                                    <span class="hover:text-red-400 hover:underline">Giới Thiệu</span>
+                            
+                            <li class="">
+                                <a href="index.php?act=information" class="flex space-x-2 items-center">
+                                    <p class="underline-animation">Giới Thiệu</p>
                                 </a>
                             </li>
-                            <li>
-                                <a href="index.php?act=" class="flex space-x-2">
-                                    <img src="asset/icon/person-lines-fill.svg" alt="">
-                                    <span class="hover:text-red-400 hover:underline">Hỗ Trợ</span>
-                                </a>
-                            </li>
+                            
                         </ul>
                     </div>
-                    <!-- <div class="w-[170px] mr-20 flex justify-between items-center ">
-                        <a href="signin.html"
-                        class="px-3 py-2 bg-[#FFFFFF] border text-[#FFC0CB] rounded-[5px] hover:text-[#FFFFFF] hover:bg-[#FFC0CB]">
-                            Sign in
-                        </a>
-                        <a href=""
-                        class="px-3 py-2 bg-[#FFFFFF] border text-[#FFC0CB] rounded-[5px] hover:text-[#FFFFFF] hover:bg-[#FFC0CB]">
-                            Sign up
-                        </a>
-                    </div> -->
                 </nav>
-            </div> <!-- End .menu-->
+            </div>
+            <!-- <div class="w-full ">
+                
+                <div class="form">
+                </div>
+            </div> -->
         </header>
