@@ -3,16 +3,27 @@
                 THÊM MỚI LOẠI HÀNG
             </p>
             <div class="form mt-5 leading-9">
-                <form action="index_admin.php?act=add_cate" method="POST" autocomplete="on">
-                    <label>Mã loại hàng</label>
+                <form action="index_admin.php?act=add_cate" method="POST" autocomplete="on" enctype="multipart/form-data">
+                    <!-- <label>Mã loại hàng</label>
                     <input class="border w-full my-1 rounded-[4px] px-3 py-1 border-[#FFC0CB] "
                            type="text" disabled name="ma_loai"
-                           placeholder="Auto number">
+                           placeholder="Auto number"> -->
                     <label for="ten_loai">Tên loại hàng</label>
                     <input class="border w-full mt-1 rounded-[4px] px-3 py-1 border-[#FFC0CB]"
-                           type="text" name="ten_loai" required id="ten_loai"
+                           type="text" name="ten_loai" id="ten_loai"
                            title="Tên loại hàng"
-                           placeholder="Tên loại hàng..">
+                           placeholder="Tên loại hàng.."
+                    >
+                    
+                    <?php echo isset($error['empty_cate_name']) ? $error['empty_cate_name']: " "?>
+                    <?php echo isset($error['space_cate_name']) ? $error['space_cate_name']: " "?>
+                   <?php echo isset($_COOKIE['empty_cate']) ? $_COOKIE['empty_cate'] : " " ?>
+                    <div>
+                        <p class="text-[19px]">Hình ảnh</p>
+                        <input class="border w-full rounded-[4px] px-3"
+                                type="file" name="hinh_anh"
+                        >
+                     </div>
                     
                     <div class="button mt-3 text-[19px]">
                         <input class=" border px-3 py-1  mt-3 rounded-[4px] bg-[#FFC0CB] hover:font-[500]"
@@ -26,9 +37,7 @@
                         
                     </div> <!-- End .button-->
                 </form>
-                <?php
-                    if(isset($thong_bao) && ($thong_bao!= "")) echo $thong_bao;
-                ?>
+                
             </div>
         </div> <!-- End .main-->
     </div> <!-- End .container-->

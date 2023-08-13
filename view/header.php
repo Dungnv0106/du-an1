@@ -3,6 +3,9 @@
     if(isset($_SESSION['list_cate'])) {
         // show_array($_SESSION['list_cate']);
     }
+    if(isset($_SESSION['user'])) {
+        // show_array($_SESSION['user']);
+    }
 ?>
 
 <!DOCTYPE html>
@@ -32,10 +35,10 @@
         .content-item:hover img {
             opacity: 0.8;
         }
-            .underline-animation {
-                position: relative;
-                display: inline-block;
-            }
+        .underline-animation {
+            position: relative;
+            display: inline-block;
+        }
 
         .underline-animation::after {
             content: '';
@@ -53,7 +56,7 @@
         }
 
         
-
+        /* Menu con */
         .menu a {
         text-decoration: none;
         color: #1C1C1C;
@@ -88,15 +91,35 @@
             opacity: 1;
         }
         }
+
+        /* hover hiển thị ô input */
+
+        .search-icon {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+        .search-input {
+            /* position: absolute; */
+            top: 100%;
+            left: 0;
+            width: 200px;
+            padding: 5px;
+            opacity: 0;
+            transition: opacity 0.4s ease-out;
+        }
+        .search-container:hover .search-input {
+            opacity: 1;
+        }
     </style>
     <link rel="stylesheet" href="../view/css/home_page.css">
 </head>
 
 <body >
 
-    <div class="container max-w-full mx-auto mb-[100px]">
-        <header class=" w-full mx-auto border bg-[#FFFFFF] min-h-[60px]">
-            <div class="flex items-center border ">
+    <div class="container max-w-full mx-auto mb-[100px] ">
+        <header class=" w-full mx-auto  bg-[#FFFFFF] min-h-[60px]">
+            <div class="flex items-center py-3 border ">
                 <div class="logo">
                     <a href="index.php">
                         <img class="w-[150px]" src="./asset/images/logo.webp" alt="">
@@ -130,7 +153,7 @@
                                 </ul>
                             </li>
                             <li class="">
-                                <a href="index.php?act=information" class="flex space-x-2 items-center">
+                                <a href="index.php?act=list_product" class="flex space-x-2 items-center">
                                     <p class="underline-animation">Sản Phẩm</p>
                                 </a>
                             </li>
@@ -144,10 +167,54 @@
                         </ul>
                     </div>
                 </nav>
-            </div>
-            <!-- <div class="w-full ">
-                
-                <div class="form">
+                <form class="search" action="" method="get">
+                    <div class="search-container relative ml-6 flex items-center space-x-1 ">
+                        <input 
+                            type="text" placeholder="Search..." title="Tìm kiếm sản phẩm"
+                            class="search-input border rounded-[20px] px-2 py-1 text-sm opacity-0"
+                        >
+                        <input class="search-icon w-0">
+                            <svg  xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="hover:cursor-pointer  bi bi-search" viewBox="0 0 16 16">
+                                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                            </svg>
+                        </input>
+                    </div>
+                </form>
+
+                <div class="flex items-center space-x-2 ml-3">
+                        
+                        <?php
+                            if(!isset($_SESSION['user'])) {
+                        ?>
+                        <a href="index.php?act=signin" 
+                        class="flex items-center space-x-2  px-2 rounded-[20px] border border-gray-400 hover:bg-[#E8E8E8]"
+                        >
+                            <p class="">Đăng nhập</p>
+                        </a>
+                        <a href="index.php?act=signup" 
+                            class="flex items-center space-x-2 px-2 rounded-[20px] border border-gray-400 hover:bg-[#E8E8E8]"
+                        >
+                            <p class="">Đăng ký</p>
+                        </a>
+                        <?php
+                            } else {
+                        ?>
+                        
+
+                        <a href="index.php?act=logout" 
+                            class="flex items-center space-x-2 px-2 rounded-[20px] border border-gray-400 hover:bg-[#E8E8E8]"
+                        >
+                            <p class="">Đăng Xuất</p>
+                        </a>
+                        <?php        
+                            }
+                        ?>
+                        <a href="" class=" " title="Giỏ hàng">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-cart-plus-fill" viewBox="0 0 16 16">
+                                <path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1H.5zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zM9 5.5V7h1.5a.5.5 0 0 1 0 1H9v1.5a.5.5 0 0 1-1 0V8H6.5a.5.5 0 0 1 0-1H8V5.5a.5.5 0 0 1 1 0z"/>
+                            </svg>
+                        </a>
                 </div>
-            </div> -->
+            </div>
+            
         </header>

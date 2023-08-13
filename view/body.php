@@ -74,7 +74,7 @@ if (isset($_SESSION['user'])) {
     </button> -->
 </div>
 <!-- End .banner-->
-<div class="w-5/6 mx-auto space-y-2">
+<div class="w-5/6 mx-auto space-y-2     ">
     <p class="text-[25px]">ABOUT</p>
     <p class="text-[45px]">
         GENCE - GENTLEMAN’S OFFICE
@@ -84,21 +84,25 @@ if (isset($_SESSION['user'])) {
     Những sản phẩm cặp da, túi da, clutch… được chính bàn tay, khối óc của người thợ Việt Nam có tay nghề cao, tâm huyết, tỉ mỉ trong từng công đoạn sản xuất.
     Kỹ thuật dựng form dáng và sản xuất theo đúng trình tự tiêu chuẩn vô cùng chặt chẽ, chuyên nghiệp để tạo ra những sản phẩm “Made in Viet Nam” chất lượng.
     </p>
+    <div class="">
+        <a href="index.php?act=list_product "
+            class="border mt-4 inline-block text-[#FFFFFF] bg-[#000] px-7 py-4"
+        >
+            KHÁM PHÁ NGAY
+        </a>
+    </div>
 </div>
 
 <div class="category w-5/6 mx-auto min-h-[340px] mt-20 space-y-8">
-    <p class="text-3xl text-center ">DANH MỤC SẢN PHẨM </p>
-    <div class="row">
-
-    </div>
+    <p class="text-3xl text-center italic  ">DANH MỤC SẢN PHẨM </p>
     <div class="grid grid-cols-4 gap-6">
         <?php
         foreach($get_four_cate as $cate) {
         ?>
-        <div class="item relative">
+        <div class="item relative hover:drop-shadow-2xl">
                 <a class="" href="index.php?act=list_product&cate_id=<?php echo $cate['cate_id'] ?>">
-                    <img class="absolute hover:scale-110 transition-transform duration-500 ease-in-out" src="./asset/images/cate_tui_deo_cheo.webp" alt="">
-                    <p class="absolute top-[200px] left-[10px] text-[20px] text-[#363636]"><?php echo $cate['cate_name']?></p>
+                    <img class="absolute hover:scale-110 transition-transform duration-700 ease-in-out" src="<?php echo substr($cate['cate_image'], 3); ?>" alt="">
+                    <p class="absolute top-[190px] left-[10px] text-[22px] text-[#FFFFFF]"><?php echo $cate['cate_name']?></p>
                 </a> 
             </div>
             <!-- End .item -->
@@ -114,8 +118,10 @@ if (isset($_SESSION['user'])) {
     
 </div>
 <!-- End .category -->
-<div class="p_shop w-5/6 mx-auto mt-5 text-center text-2xl font-semibold text-[#F54748] ">
-    <span class="italic">GENCE - THỜI TRANG CÔNG SỞ</span>
+<div class="p_shop w-5/6 mx-auto mt-10 text-center text-2xl ">
+    <!-- <span class="italic">GENCE - THỜI TRANG CÔNG SỞ</span> -->
+    <p class="text-3xl text-center italic  ">GENCE - THỜI TRANG CÔNG SỞ</p>
+
 </div> <!-- End .p_shop-->
 <section class="content w-11/12 grid grid-cols-[75%25%] mt-8 mx-auto gap-2 ">
     <div class="grid grid-cols-3 gap-x-4 gap-y-6 ">

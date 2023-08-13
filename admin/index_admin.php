@@ -13,11 +13,26 @@
         $act = $_GET['act'];
         switch ($act) {
             case 'add_cate': // Thêm danh mục
+                $error = [];
                 if(isset($_POST['add_cate'])){
                     $cate_name = $_POST['ten_loai'];
-                    add_cate($cate_name);
-                    $thong_bao = "<span class='text-red-500'>Thêm Danh Mục Thành Công</span>";
-                    header("location:index_admin.php?act=list_cate");
+                    $target_file = "../upload/". $_FILES['hinh_anh']['name'];
+                        // $cate_name = trim($cate_name);
+                    // $cate_name = trim($cate_name);
+
+                    if (empty($cate_name)) {
+                        $error['empty_cate_name'] = "<span class='text-red-500'>*Không để trống tên danh mục</span>";
+                        // setcookie('empty_cate', '<span class="text-red-500">*Không để trống tên danh mục</span>', time() + 5);
+                    }
+                    // if(strpos($cate_name, '  ') !== false) {
+                    //     $error['space_cate_name'] = "<span class='text-red-500'>*Tên danh mục không thể có khoảng trắng</span>";
+                    // }
+                    if(empty($error)) {
+                        move_uploaded_file($_FILES['hinh_anh']['tmp_name'],$target_file);
+                        add_cate($cate_name, $target_file);
+                        setcookie('thong_bao', 'Thêm Danh Mục Thành Công', time() + 5);
+                        header("location:index_admin.php?act=list_cate");
+                    }
                 }
                 include "category/add_cate.php";
                 break;
@@ -42,11 +57,22 @@
                 include "category/edit_cate.php";
                 break;    
             case 'update_cate': // Cập nhật danh mục
+                $error = [];
                 if(isset($_POST['edit_cate'])){
                     $cate_name = $_POST['ten_loai'];
                     $cate_id = $_POST['cate_id'];
-                    update_cate($cate_id, $cate_name);
-                    $thong_bao = "*Cập nhật loại hàng thành công"; 
+                    $target_file = "../upload/". $_FILES['hinh_anh']['name'];
+
+                    if (empty($cate_name)) {
+                        $error['empty_cate_name'] = "<span class='text-red-500'>*Không để trống tên danh mục</span>";
+                        // setcookie('empty_cate', '<span class="text-red-500">*Không để trống tên danh mục</span>', time() + 5);
+                    }
+                    if(empty($error)) {
+                        move_uploaded_file($_FILES['hinh_anh']['tmp_name'],$target_file);
+                        update_cate($cate_id, $cate_name, $target_file);
+                        setcookie('thong_bao', 'Cập Nhật Danh Mục Thành Công', time() + 5);
+                        header("location:index_admin.php?act=list_cate");
+                    }
                 }
                 $list_cate = queryAll();
                 include "category/list_cate.php";
@@ -186,7 +212,8 @@
                 include "body.php";
                 break;
         }
-    } else{
+    } 
+    else{
         include "body.php";
     }
     

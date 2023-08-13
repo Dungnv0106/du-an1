@@ -1,40 +1,70 @@
 <?php
 // show_array($list_cate);
+for($i = 0; $i < count($list_cate); $i++) {
+    // echo $list_cate[$i]['cate_name']. "<br>";
+}
 ?>
 
 <p class="p-3 text-[28px] border bg-[#EEE] rounded-md">
-    QUẢN LÝ LOẠI HÀNG
+    QUẢN LÝ DANH MỤC
 </p>
-<?php if (isset($thong_bao)) echo "<p class='text-red-500'>" . $thong_bao . "</p>" ?>
+<div class="flex items-center justify-between">
+
+    <input type="button" 
+        onclick="location.href='index_admin.php?act=add_cate'" 
+        value="Thêm mới danh mục"
+        class="mt-4 bg-[#FFC0CB] px-4 py-[5px] rounded-[4px] hover:font-[500] hover:text-[#EF4444]"
+    >
+    <span class="text-[19px] px-2">Showing all <?php echo count($list_cate)?> results</span>
+</div>
+
+
+<?php
+    if (isset($_COOKIE['thong_bao'])) {
+        $thong_bao = $_COOKIE['thong_bao'];
+        echo "<p class='text-red-500'>" . $thong_bao . "</p>" ;
+    }
+?>
 <div class="list_cate mt-6 w-full">
     <table class="border w-full mx-auto ">
         <tr class="bg-[#FFC0CB] py-2 border text-center text-red-600">
             <td class="w-[55px] "></td>
-            <td title="Mã loại hàng" class="w-[140px]">Mã Loại Hàng</td>
+            <td class="w-[55px] ">STT</td>
+            <!-- <td title="Mã loại hàng" class="w-[140px]">Mã Loại Hàng</td> -->
             <td title="Tên loại hàng" class="">Tên Loại Hàng</td>
+            <td class="w-[22%]">Hình Ảnh</td>
             <td title="Thao Tác" class="w-[120px]">Thao Tác</td>
         </tr>
-        <?php
-        foreach ($list_cate as $cate) {
+        <img src="asset/images/cap_da/cap-da-nam-cao-cap-khoa-so-cgl07-xanh-1.webp" alt="">
+        <?php 
+        foreach($list_cate as $index => $cate) {
         ?>
             <tr class="show ">
                 <td class="text-center"><input type="checkbox"></td>
-                <td class="text-center"><?php echo $cate['cate_id'] ?></td>
+                <td class="text-center ">
+                    <?php echo $index + 1?>
+                </td>
+                <!-- <td class="text-center">
+                    <?php echo $cate['cate_id'] ?>
+                </td>  -->
                 <td class="pl-[20px] hover:bg-[#FFEEEE]" title="<?php echo $cate['cate_name'] ?>"><?php echo $cate['cate_name'] ?></td>
+                <td class=""><img class="w-11/12 mx-auto py-1" src="<?php echo $cate['cate_image']?>" alt=""></td>
+
                 <td class="text-center">
                     <a href="index_admin.php?act=edit_cate&cate_id=<?php echo $cate['cate_id'] ?>">Sửa</a>
                     <a onclick="return confirm('Bạn có chắc chắn muốn xóa?')" href="index_admin.php?act=delete_cate&cate_id=<?php echo $cate['cate_id'] ?>">Xóa</a>
                 </td>
             </tr>
         <?php
+
         }
+    
         ?>
     </table>
     <div class="action w-full mx-auto mt-4 space-x-1">
         <input type="button" value="Chọn tất cả" onclick="checkAll()">
         <input type="button" value="Bỏ chọn tất cả" onclick="unCheck()">
         <input type="button" value="Xóa các mục đã chọn">
-        <input type="button" onclick="location.href='index_admin.php?act=add_cate'" value="Thêm mới danh mục">
         <input type="button" onclick="location.href='index_admin.php?act=add_pro'" value="Thêm mới sản phẩm">
         <input class=" border px-3 py-1 rounded-[4px] bg-[#FFC0CB] hover:font-[500]" type="button" onclick="location.href='index_admin.php?act=list_pro'" value="Danh sách sản phẩm ">
     </div> <!-- End .action -->

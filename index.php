@@ -1,5 +1,4 @@
-<?php
-session_start();
+<?php session_start();
 // session_destroy();
 include "./model/connect.php";
 include "./model/model_category.php";
@@ -18,6 +17,9 @@ $get_four_cate = get_four_cate();
 if (isset($_GET['act']) && !empty($_GET['act'])) {
     $act = $_GET['act'];
     switch ($act) {
+        // case '': 
+        //     include "view/body.php";
+        //     break;
         case 'information':
             include "view/information.php";
             break;
@@ -83,7 +85,8 @@ if (isset($_GET['act']) && !empty($_GET['act'])) {
                 if (is_array($one_user)) {
                     $_SESSION['user'] = $one_user;
                     // header("Location: index.php");
-                    // $thong_bao = "<span class='text-red-500'>Đăng nhập thành công</span>";
+                    $thong_bao = "<span class='text-red-500'>Đăng nhập thành công</span>";
+                    // header("location:index.php?act=''");
                     // $_SESSION['thong_bao'] = "<span class='text-red-500'>Đăng nhập thành công</span>";
                 } 
                 if(!isset($one_user)) {
@@ -91,7 +94,7 @@ if (isset($_GET['act']) && !empty($_GET['act'])) {
                     $thong_bao = "<span class='font-[500] text-red-500'>Tài khoản không tồn tại. Vui lòng kiểm tra lại hoặc đăng kí</span>";
                 }
             }
-            include "view/body.php";
+            include "view/account/signin.php";
             break;
         case 'forget_pass':
             if (isset($_POST['forget_pass']) && $_POST['forget_pass']) {
@@ -143,7 +146,9 @@ if (isset($_GET['act']) && !empty($_GET['act'])) {
             include "view/body.php";
             break;
     }
-} else {
+} 
+else {
     include "view/body.php";
 }
 include "view/footer.php";
+?>

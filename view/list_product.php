@@ -23,11 +23,14 @@
                 } else{
                     "Không tìm thấy sản phẩm cho ".$name_cate;
                 }
+                if(isset($_GET['act']) && ($_GET['act'] == 'list_product') && (!isset($_GET['cate_id']))) {
+                    echo "Tất cả sản phẩm";
+                }
                 ?>
             </span>
         </div>
         <div>
-            <span class="text--800">Showing all <?php echo count($list_product)?> results</span>
+            <span class="">Showing all <?php echo count($list_product)?> results</span>
         </div>
     </div>
     <a href="index.php"></a>

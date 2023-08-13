@@ -26,7 +26,7 @@
             </div>
             
             <div class="mt-[48px]">
-                <form action="" method="post" autocomplete="off">
+                <form action="index.php?act=signin" method="post" autocomplete="off">
                     <div class="email ">
                         <label for="email" class="block sm:text-2xl md:text-base text-slate-600 font-[600]">
                             Email
@@ -47,20 +47,23 @@
                     </div> <!--End .password-->
                     <input type="submit" name="sign_in" value="Login now"
                            class="border block w-full sm:text-2xl md:text-base mt-[30px] bg-[#37A9CD] rounded-[5px] py-[15px] text-[#FFFFFF] font-[600] ">
-                    <button class="flex justify-center items-center mt-[15px] bg-gray-800 font-[600] text-[#FFFFFF] w-full rounded-[5px] py-[15px] mb-3">
+                    <!-- <button class="flex justify-center items-center mt-[15px] bg-gray-800 font-[600] text-[#FFFFFF] w-full rounded-[5px] py-[15px] mb-3">
                         <div class="mr-[11px]">
                             <img src="asset/icon/icongg.png" alt="" class="">    
                         </div>
                         <span class="sm:text-2xl md:text-base">
                             Or sign-in with google
                         </span>
-                    </button>
+                    </button> -->
                     
                     <?php
-                        if(isset($thong_bao)) echo $thong_bao;
+                        if(isset($thong_bao)) {
+                            echo $thong_bao;
+                            // header("location:index.php");
+                        };
                     ?>
                 </form>
-                <div class="mt-8 sm:text-2xl md:text-[18px] font-[700] text-[#37A9CD] text-center">
+                <!-- <div class="mt-8 sm:text-2xl md:text-[18px] font-[700] text-[#37A9CD] text-center">
                     <a href="">
                         Forgot password?
                     </a>
@@ -72,7 +75,7 @@
                     <a href="" class="text-[#37A9CD]">
                         Join free today
                     </a>
-                </div>
+                </div> -->
             </div>
         </div>
     </div><!-- End .container-->    
