@@ -1,12 +1,12 @@
 <?php
 // Thêm danh mục
-    function add_cate($cate_name){ 
-        $sql_add_cate = "INSERT INTO `categories` VALUES (NULL, '$cate_name')";
+    function add_cate($cate_name, $target_file){ 
+        $sql_add_cate = "INSERT INTO `categories` VALUES (NULL, '$cate_name', '{$target_file}')";
         connect($sql_add_cate);
     }
  // Hàm lấy tất cả danh mục
     function queryAll(){
-        $query_cate = "SELECT * FROM `categories` ORDER BY cate_id";
+        $query_cate = "SELECT * FROM `categories` ORDER BY cate_id DESC";
         $list_cate = getAll($query_cate);
         return $list_cate;
     }
@@ -18,8 +18,13 @@
     }
 
 // Hàm cập nhật danh mục    
-    function update_cate($cate_id, $cate_name){ 
-        $update_cate = "UPDATE `categories` SET cate_name = '{$cate_name}' WHERE cate_id = '{$cate_id}'";
+    function update_cate($cate_id, $cate_name, $target_file){ 
+        if($target_file == "../upload/") {
+            $update_cate = "UPDATE `categories` SET cate_name = '{$cate_name}' WHERE cate_id = '{$cate_id}'";
+        } else {
+            $update_cate = "UPDATE `categories` SET cate_name = '{$cate_name}', cate_image = '{$target_file}' WHERE cate_id = '{$cate_id}'";
+
+        }
         connect($update_cate);
     }
 // Hàm xóa danh mục theo id    
