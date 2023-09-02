@@ -10,7 +10,7 @@
 
 <body>
     <div class="container max-w-full mx-auto mb-[100px]">
-        <div class="content w-1/3 mx-auto ">
+        <div class="content w-1/3 mx-auto mt-5">
             <div class="text-center">
                 <div class="logo w-[250px] mx-auto">
                     <a href="">
@@ -26,7 +26,7 @@
             </div>
             
             <div class="mt-[48px]">
-                <form action="index.php?act=signin" method="post" autocomplete="off">
+                <form action="index.php?act=signin" method="post" >
                     <div class="email ">
                         <label for="email" class="block sm:text-2xl md:text-base text-slate-600 font-[600]">
                             Email

@@ -20,7 +20,7 @@
                 <div>
                     <label for="don_gia">Đơn giá</label>
                     <input class="border w-full rounded-[4px] px-3 h-[40px]"
-                           type="number"  name="don_gia" id ="don_gia"
+                           type="number"  name="don_gia" id ="don_gia" min="0"
                            placeholder="Vui lòng nhập giá sản phẩm..">
                     <?php echo isset($error['empty_pro_price'])?$error['empty_pro_price']:" "?>
                 </div>
@@ -33,10 +33,10 @@
                     <?php echo isset($error['empty_pro_name'])?$error['empty_pro_name'] : " " ?>
                 </div>
                 <div>
-                    <label for="giam_gia">Giảm giá</label>
+                    <label for="so_luong">Số Lượng</label>
                     <input class="border w-full rounded-[4px] px-3 h-[40px]"
-                           type="number"  name="giam_gia" id="giam_gia"
-                           placeholder="Vui lòng nhập giảm giá..">
+                           type="number"  name="so_luong" id="so_luong" min="0"
+                           placeholder="Vui lòng nhập số lượng sản phẩm..">
                 </div>
                 <div>
                     <p class="text-[19px]">Hình ảnh</p>
