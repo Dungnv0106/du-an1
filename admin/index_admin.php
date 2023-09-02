@@ -83,7 +83,7 @@
                 if(isset($_POST['add_pro'])){
                     $pro_name = $_POST['ten_san_pham'];
                     $pro_price = $_POST['don_gia'];
-                    // $giam_gia = $_POST['giam_gia'];
+                    $pro_quantity = $_POST['so_luong'];
                     $pro_desc = $_POST['mo_ta'];
                     $chat_lieu = $_POST['chat_lieu'];
                     $cate_id = $_POST['category'];
@@ -97,7 +97,7 @@
                     }
                     if(empty($error)){
                         move_uploaded_file($_FILES['hinh_anh']['tmp_name'],$target_file);
-                        add_pro($pro_name, $pro_price, $target_file, $pro_desc, $chat_lieu, $cate_id);
+                        add_pro($pro_name, $pro_price, $target_file, $pro_quantity , $pro_desc, $chat_lieu, $cate_id);
                         $thong_bao = "<span class = 'text-red-500'>Thêm sản phẩm thành công </span>";
                         header("location:index_admin.php?act=list_pro");
                         
@@ -135,7 +135,7 @@
                     $pro_id = $_POST['pro_id'];
                     $pro_name = $_POST['ten_san_pham'];
                     $pro_price = $_POST['don_gia'];
-                    // $giam_gia = $_POST['giam_gia'];
+                    $pro_quantity = $_POST['so_luong'];
                     $pro_desc = $_POST['mo_ta'];
                     $chat_lieu = $_POST['chat_lieu'];
                     $cate_id = $_POST['category'];
@@ -149,7 +149,7 @@
                     }
                     if(empty($error)){
                         move_uploaded_file($_FILES['hinh_anh']['tmp_name'],$target_file);
-                        update_pro($pro_id, $pro_name, $pro_price, $target_file, $pro_desc, $chat_lieu, $cate_id);
+                        update_pro($pro_id, $pro_name, $pro_price, $target_file,$pro_quantity ,$pro_desc, $chat_lieu, $cate_id);
                         $thong_bao = "Cập nhật sản phẩm thành công";
                     } 
                 }

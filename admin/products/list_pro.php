@@ -30,12 +30,12 @@
     <table class="border w-full border mt-2">
         <tr class="title bg-[#FFC0CB] py-2 border text-[17px] text-red-600 text-center">
             <td class="w-[3%]"></td>
-            <td class="w-[5%] ">Mã SP</td>
+            <td class="w-[5%] ">STT</td>
             <td class="w-[10%]">Tên Sản Phẩm</td>
-            <td class="w-[15%]">Tên Danh Mục</td>
-            <td class="w-[22%]">Hình Ảnh</td>
-            <td class="w-[8%]">Đơn Giá</td>
+            <td class="w-[10%]">Danh Mục</td>
+            <td class="w-[22%]">Ảnh</td>
             <td class="w-[8%]">Số Lượng</td>
+            <td class="w-[10%]">Đơn Giá</td>
             <!-- <td class="text-center">Giảm Giá</td> -->
             <!-- <td class="text-center w-[110px]">Ngày Tạo</td> -->
             <td class="w-[10%]">Chất liệu</td>
@@ -44,11 +44,11 @@
             <td class="w-[6%]">Thao Tác</td>
         </tr>
         <?php
-        foreach ($list_pro as $pro){
+        foreach ($list_pro as $index => $pro){
             ?>
-        <tr class="show hover:bg-[#FFEEEE]">
+        <tr class="show ">
             <td class="text-center"><input type="checkbox"></td>
-            <td class="text-center"><?php echo $pro['pro_id']?></td>
+            <td class="text-center"><?php echo $index + 1?></td>
             <td class="px-2"><?php echo $pro['pro_name']?></td>
             <td class="px-2">
                 <?php foreach($list_cate as $cate){
@@ -56,9 +56,15 @@
                     }?>
             </td>
             <td class=""><img class="w-11/12 mx-auto py-1" src="<?php echo $pro['pro_image']?>" alt=""></td>
+            <td class="text-center">
+                <?php if($pro['pro_quantity'] == 0){
+                    echo "Hết Hàng!";
+                }else {
+                    echo $pro['pro_quantity'];
+                } ?>
+            </td>
 
-            <td class="text-center"><?php echo $pro['pro_price']." <span class='font-[500]'>VNĐ</span>"?></td>
-            <td class="text-center">11</td>
+            <td class="text-center"><?php echo number_format($pro['pro_price'], 0, ',', '.') ." <span class='font-[500] mb-2 underline'>đ</span>"?></td>
             <!-- <td class="text-center"><?php echo $pro['giam_gia']." VNĐ" ?></td> -->
             <td class="px-2"><?php echo $pro['chat_lieu']?></td>
             <td class="px-2"><?php echo $pro['pro_desc']?></td>

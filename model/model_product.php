@@ -1,18 +1,19 @@
 <?php
-    function add_pro($pro_name, $pro_price, $target_file, $pro_desc, $chat_lieu, $cate_id){
-        $sql_add_pro = "INSERT INTO `products` (`pro_id`, `pro_name`, `pro_price`, `pro_image`, `pro_desc`, `chat_lieu`, `cate_id`) VALUES (NULL, '{$pro_name}', '{$pro_price}', '{$target_file}', '{$pro_desc}', '{$chat_lieu}','{$cate_id}')";
+    function add_pro($pro_name, $pro_price, $target_file, $pro_quantity, $pro_desc, $chat_lieu, $cate_id){
+        $sql_add_pro = "INSERT INTO `products` (`pro_id`, `pro_name`, `pro_price`, `pro_image`, `pro_quantity` ,`pro_desc`, `chat_lieu`, `cate_id`) 
+                        VALUES (NULL, '{$pro_name}', '{$pro_price}', '{$target_file}', '{$pro_quantity}' ,'{$pro_desc}', '{$chat_lieu}','{$cate_id}')";
         connect($sql_add_pro);
     }
 
     function queryAllPro($key_word, $cate_id){
         $query_pro = "SELECT * FROM `products` WHERE 1";
         if($key_word != ""){
-            $query_pro.= " AND pro_name like '%{$key_word}%'";
+            $query_pro .= " AND pro_name like '%{$key_word}%' ";
         }
         if($cate_id > 0){
             $query_pro.= " AND cate_id = '{$cate_id}' ";
         }
-        $query_pro.= " ORDER BY pro_id";
+        $query_pro.= " ORDER BY pro_id DESC";
         $list_pro = getAll($query_pro);
         return $list_pro;
     }
@@ -22,11 +23,11 @@
         return $one_pro;
     }
 // Cập nhật sản phẩm 
-    function update_pro($pro_id, $pro_name, $pro_price, $target_file, $pro_desc, $chat_lieu, $cate_id){
+    function update_pro($pro_id, $pro_name, $pro_price, $target_file, $pro_quantity ,$pro_desc, $chat_lieu, $cate_id){
         if($target_file == "../upload/"){
-            $update_pro = "UPDATE `products` SET pro_name='{$pro_name}', pro_price='{$pro_price}', pro_desc = '{$pro_desc}', chat_lieu = '{$chat_lieu}', cate_id = '{$cate_id}' WHERE pro_id = '{$pro_id}'";
+            $update_pro = "UPDATE `products` SET pro_name='{$pro_name}', pro_price='{$pro_price}',pro_quantity= '{$pro_quantity}' ,pro_desc = '{$pro_desc}', chat_lieu = '{$chat_lieu}', cate_id = '{$cate_id}' WHERE pro_id = '{$pro_id}'";
         } else{
-            $update_pro = "UPDATE `products` SET pro_name='{$pro_name}', pro_price='{$pro_price}', pro_image = '{$target_file}', pro_desc = '{$pro_desc}', chat_lieu = '{$chat_lieu}', cate_id = '{$cate_id}' WHERE pro_id = '{$pro_id}'";
+            $update_pro = "UPDATE `products` SET pro_name='{$pro_name}', pro_price='{$pro_price}', pro_image = '{$target_file}', pro_quantity= '{$pro_quantity}' ,pro_desc = '{$pro_desc}', chat_lieu = '{$chat_lieu}', cate_id = '{$cate_id}' WHERE pro_id = '{$pro_id}'";
         }
         connect($update_pro);
     }

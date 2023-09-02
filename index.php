@@ -5,7 +5,7 @@ include "./model/model_category.php";
 include "./model/model_product.php";
 include "./model/model_user.php";
 include "./model/model_comment.php";
-include "view/header.php";
+include "./view/header.php";
 
 // echo $_SERVER['HTTP_REFERER'];
 
@@ -25,18 +25,21 @@ if (isset($_GET['act']) && !empty($_GET['act'])) {
             break;
         case 'list_product':
             if (isset($_POST['cate_name']) && ($_POST['cate_name'] != "")) {
-                $name_cate = $_POST['cate_name']; // lấy tên ở ô tìm kiếm
+                $cate_name = $_POST['cate_name']; // lấy tên ở ô tìm kiếm
+                // echo $cate_name;
             } else {
-                $name_cate = "";
+                $cate_name = "";
             }
             if (isset($_GET['cate_id']) && ($_GET['cate_id'] > 0)) {
                 $cate_id = $_GET['cate_id'];
-                $cate_name = query_cate_name($cate_id); // Lấy tên danh mục sản phẩm theo id
+                $categoryName = query_cate_name($cate_id); // Lấy tên danh mục sản phẩm theo id
             } else {
                 $cate_id = 0;
             }
+            
             $list_cate = queryAll(); // Lấy tất cả danh mục
-            $list_product = queryAllPro($name_cate, $cate_id); // Lấy sản phẩm theo danh mục
+            // Lấy sản phẩm theo danh mục
+            $list_product = queryAllPro($cate_name, $cate_id); 
             include "view/list_product.php";
             break;
         case 'detail_pro':
@@ -84,7 +87,7 @@ if (isset($_GET['act']) && !empty($_GET['act'])) {
                 $one_user = queryOneUser($email, $password);
                 if (is_array($one_user)) {
                     $_SESSION['user'] = $one_user;
-                    // header("Location: index.php");
+                    setcookie('thong_bao', 'Xin chào ', time() + 5);
                     $thong_bao = "<span class='text-red-500'>Đăng nhập thành công</span>";
                     // header("location:index.php?act=''");
                     // $_SESSION['thong_bao'] = "<span class='text-red-500'>Đăng nhập thành công</span>";
@@ -135,7 +138,7 @@ if (isset($_GET['act']) && !empty($_GET['act'])) {
                 $user_id = $_SESSION['user']['user_id'];
                 $comment_date = date('d/m/Y h:i a');
                 add_comment($content, $user_id, $pro_id, $comment_date);
-                header("Location: index.php?act=detail_pro&pro_id=".$pro_id);
+                // header("Location: index.php?act=detail_pro&pro_id=".$pro_id);
             }
             include "view/comments/comment_form.php";
             break;    

@@ -26,20 +26,27 @@
             <h1 class="text-[25px] font-[600] "><?php echo $detail_pro['pro_name'] ?></h1>
             <hr class="border border-b-[4px] w-[40px] my-3 border-gray-300">
             <div class="text-[21px] space-y-4 ">
-                <p class="font-[700] text-xl text-red-500"><?php echo $detail_pro['pro_price'] ?><u>đ</u></p>
-                <p><span class="font-[500]">Xuất sứ:</span> Việt Nam</p>
+                <p class="font-[700] text-xl text-red-500"><?php echo number_format($detail_pro['pro_price'], 0, ',', '.') ?><u>đ</u></p>
+                <p><span class="font-[500]">Xuất sứ:</span> Gence Việt Nam - Da thật, Giá trị thật</p>
                 <p><span class="font-[500]">Mã SP:</span> <?php echo $detail_pro['pro_id'] ?></p>
                 <p><span class="font-[500]">Chất liệu:</span> <?php echo $detail_pro['chat_lieu'] ?></p>
                 <p><span class="font-[500]">Lượt xem:</span> <?php echo $detail_pro['pro_view'] ?></p>
                 <p><span class="font-[500]">Cam kết:</span> Chúng tôi sẽ hoàn tiền nếu túi không phải là da và không
                     giống như hình chụp</p>
-                <p><span class="font-[500]">Mô tả:</span> <?php echo $detail_pro['pro_desc'] ?></p>
+                <!-- <p><span class="font-[500]">Mô tả:</span> <?php echo $detail_pro['pro_desc'] ?></p> -->
                 <p class="text-xl text-gray-500">Hình ảnh sản phẩm 100% chụp bằng sản phẩm thật, do ánh sáng môi trường
                     xung quanh và màn hình hiển thị độ phân giải là lý do khiến màu của ví đậm hơn hoặc nhạt hơn so với
                     bên ngoài.</p>
             </div>
         </div>
     </div> <!-- End . content -->
+    <div class="w-5/6 mx-auto px-3">
+        <p class="text-[22px] font-[500] text-gray-700 pl-3 rounded-md py-2">Mô tả ngắn</p>
+        <p class="text-xl text-gray-900">
+            <?php echo $detail_pro['pro_desc']; ?>
+        </p>
+    </div>
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 
     <script>
