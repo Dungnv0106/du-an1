@@ -1,14 +1,5 @@
 <script src="https://kit.fontawesome.com/f65c161cd0.js"></script>
 <style>
-    /* * {
-    margin: 0;
-    padding: 0;
-    font-family: 'poppins', sans-serif;
-    box-sizing: border-box;
-}    */
-    /* body{
-    background: #eef8ff;
-} */
     footer {
         width: 100%;
         position: absolute;
@@ -59,11 +50,6 @@
         list-style: none;
         margin-bottom: 12px;
     }
-
-    /* .col ul li a {
-        text-decoration: none;
-        color: #fff;
-    } */
 
     .col form {
         padding-bottom: 15px;
@@ -159,7 +145,7 @@
         }
     }
 </style>
-<footer class="border border-red-500 ">
+<footer class="border border-red-500  ">
     <div class="row">
         <div class="col">
             <a href="index.php">
@@ -208,7 +194,8 @@
     <hr class="w-[90%] mx-auto my-[20px]">
     <p class="text-center">Công Ty TNHH Thương Mại và Sản Xuất Gence</p>
 </footer>
-</div><!-- End .container-->
+</div>
+<!-- End .container-->
 </body>
 
 </html>

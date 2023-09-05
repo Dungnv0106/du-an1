@@ -1,4 +1,5 @@
-<?php session_start();
+<?php
+session_start();
 // session_destroy();
 include "./model/connect.php";
 include "./model/model_category.php";
@@ -6,17 +7,39 @@ include "./model/model_product.php";
 include "./model/model_user.php";
 include "./model/model_comment.php";
 include "./view/header.php";
+$url = substr($_SERVER['REQUEST_URI'], 8);
+// echo $url;
+if($url == 'index.php') {
+    // include "./view/header.php";
+} else {
+
+}
+if(isset($_GET['act']) && !empty($_GET['act'])) {
+    if( $_GET['act'] == 'signup') {
+
+    } else {
+    }
+}
 
 // echo $_SERVER['HTTP_REFERER'];
 
+// Mã JavaScript cần nhúng
+$javascriptCode = "
+    var message = 'Bạn cần đăng nhập để mua hàng ^^';
+    alert(message);
+";
+
 $new_pro = query_pro_home();
 $list_cate = queryAll();
-if(isset($list_cate)) $_SESSION['list_cate'] = $list_cate;
+if (isset($list_cate))
+    $_SESSION['list_cate'] = $list_cate;
 $list_top_10 = query_pro_top10();
 $get_four_cate = get_four_cate();
 if (isset($_GET['act']) && !empty($_GET['act'])) {
     $act = $_GET['act'];
+
     switch ($act) {
+        
         // case '': 
         //     include "view/body.php";
         //     break;
@@ -36,10 +59,10 @@ if (isset($_GET['act']) && !empty($_GET['act'])) {
             } else {
                 $cate_id = 0;
             }
-            
+
             $list_cate = queryAll(); // Lấy tất cả danh mục
             // Lấy sản phẩm theo danh mục
-            $list_product = queryAllPro($cate_name, $cate_id); 
+            $list_product = queryAllPro($cate_name, $cate_id);
             include "view/list_product.php";
             break;
         case 'detail_pro':
@@ -72,7 +95,7 @@ if (isset($_GET['act']) && !empty($_GET['act'])) {
 
                 //     }
                 // }
-                
+
                 add_user($email, $fullName, $password, $repass);
                 $thong_bao = "<span class='mt-3 font-[500] text-red-500'>Đăng kí tài khoản thành công. Vui lòng đăng nhập để mua hàng</span>";
                 // header("Location:".$_SERVER['HTTP_REFERER']);
@@ -87,12 +110,12 @@ if (isset($_GET['act']) && !empty($_GET['act'])) {
                 $one_user = queryOneUser($email, $password);
                 if (is_array($one_user)) {
                     $_SESSION['user'] = $one_user;
-                    setcookie('thong_bao', 'Xin chào ', time() + 5);
+                    // setcookie('thong_bao', 'Xin chào ', time() + 5);
                     $thong_bao = "<span class='text-red-500'>Đăng nhập thành công</span>";
                     // header("location:index.php?act=''");
                     // $_SESSION['thong_bao'] = "<span class='text-red-500'>Đăng nhập thành công</span>";
-                } 
-                if(!isset($one_user)) {
+                }
+                if (!isset($one_user)) {
                     $_SESSION['error'] = "<span class='font-[500] text-red-500'>Tài khoản không tồn tại. Vui lòng kiểm tra lại hoặc đăng kí</span>";
                     $thong_bao = "<span class='font-[500] text-red-500'>Tài khoản không tồn tại. Vui lòng kiểm tra lại hoặc đăng kí</span>";
                 }
@@ -131,7 +154,7 @@ if (isset($_GET['act']) && !empty($_GET['act'])) {
             // header("Location: index.php");
             include "view/body.php";
             break;
-        case 'post_comment': 
+        case 'post_comment':
             if (isset($_POST['post_comment']) && ($_POST['post_comment'])) {
                 $content = $_POST['content'];
                 $pro_id = $_POST['pro_id'];
@@ -141,7 +164,55 @@ if (isset($_GET['act']) && !empty($_GET['act'])) {
                 // header("Location: index.php?act=detail_pro&pro_id=".$pro_id);
             }
             include "view/comments/comment_form.php";
-            break;    
+            break;
+
+        case 'cart':
+            include 'view/cart/cart.php';
+            break;
+        case 'addToCart':
+            if (isset($_SESSION['user'])) {
+
+                if (isset($_POST['add_to_cart']) && $_POST['add_to_cart']) {
+                    $pro_id = $_POST['pro_id'];
+                    $pro_name = $_POST['pro_name'];
+                    $pro_image = $_POST['pro_image'];
+                    $pro_price = $_POST['pro_price'];
+                    $pro_quantity = $_POST['pro_quantity'] ? $_POST['pro_quantity'] : 0;
+                    $total = $pro_price * $pro_quantity;
+                    $oneProduct = [
+                        'pro_id' => $pro_id,
+                        'pro_name' => $pro_name,
+                        'pro_image' => $pro_image,
+                        'pro_price' => $pro_price,
+                        'pro_quantity' => $pro_quantity,
+                        'total' => $total
+                    ];
+                    // if (isset($_SESSION['cart'])) {
+                    //     $cart = $_SESSION['cart'];
+                    // } else {
+                    //     $cart = [];
+                    // }
+                    if (!isset($_SESSION['cart'])) {
+                        $_SESSION['cart'] = [];
+                    }
+
+                    // if (in_array($oneProduct, $_SESSION['cart'])) {
+                    //     $oneProduct['pro_quantity'] += 1;
+                    // } else {
+                    //     // array_push($_SESSION['cart'], $oneProduct);
+                    // }
+                    array_push($_SESSION['cart'], $oneProduct);
+
+                }
+            } else {
+                echo "<script>$javascriptCode</script>";
+                return;
+            }
+            include 'view/cart/cart.php';
+            break;
+        case 'bill': 
+            include 'view/cart/bill.php';
+            break;
         case 'introduction':
             include "view/introduction.php";
             break;
@@ -149,9 +220,12 @@ if (isset($_GET['act']) && !empty($_GET['act'])) {
             include "view/body.php";
             break;
     }
-} 
-else {
+} else {
     include "view/body.php";
 }
-include "view/footer.php";
+include "./view/footer.php";
+
+// if($url == 'index.php') {
+//     include "./view/footer.php";
+// } 
 ?>
