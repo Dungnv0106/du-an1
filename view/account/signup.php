@@ -18,7 +18,7 @@
 </head>
 
 <body>
-    <div class="container mt-11 sm:w-[500px] md:w-[400px] mx-auto ">
+    <div class="container sm:w-[500px] md:w-[400px] mx-auto h-full ">
         <div class="text-center">
             <div class="logo ">
                 <a href="index.php">
@@ -27,7 +27,7 @@
             </div>
             <div class=" sm:text-2xl md:text-base font-semibold">
                 <p>
-                    Welcome to Fudo
+                    Welcome to Gence
                 </p>
             </div>
             <div class="mt-4">

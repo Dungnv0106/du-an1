@@ -133,8 +133,8 @@ if (isset($_SESSION['user'])) {
 <body>
     <!-- <img src="../asset/images/logo.webp" alt=""> -->
     <div class="container max-w-full mx-auto mb-[100px] ">
-        <header class=" w-full mx-auto  bg-[#FFFFFF] min-h-[60px] border">
-            <div class="flex items-center py-3 border ">
+        <header class=" w-full mx-auto  bg-[#FFFFFF] min-h-[60px]">
+            <div class="flex items-center py-3 ">
                 <div class="logo ml-10">
                     <a href="index.php">
                         <img class="w-[150px]" src="./asset/images/logo.webp" alt="">
@@ -249,7 +249,7 @@ if (isset($_SESSION['user'])) {
                         <?php
                     } else {
                         ?>
-                        <a href="" class=" " title="Giỏ hàng">
+                        <a href="index.php?act=cart" class=" " title="Giỏ hàng">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
                                 class="bi bi-cart-plus-fill" viewBox="0 0 16 16">
                                 <path

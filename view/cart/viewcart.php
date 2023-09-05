@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- <link href="assets/images/favicon.ico" type="img/x-icon" rel="shortcut icon"> -->
     <script src="https://kit.fontawesome.com/8c204d0fdf.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="view/assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="view/assets/css/iconfont.min.css">
@@ -90,8 +89,6 @@
                             </tfoot>
                         </table>
                     </div>
-
-
                 </div>
 
             </div>
@@ -100,11 +97,11 @@
 
 </body>
 
-<script src="view/assets/js/vendor/jquery-1.12.4.min.js"></script>
+<!-- <script src="view/assets/js/vendor/jquery-1.12.4.min.js"></script>
 <script src="view/assets/js/popper.min.js"></script>
 <script src="view/assets/js/bootstrap.min.js"></script>
 <script src="view/assets/js/plugins.js"></script>
-<script src="view/assets/js/main.js"></script>
+<script src="view/assets/js/main.js"></script> -->
 </body>
 
 </html>

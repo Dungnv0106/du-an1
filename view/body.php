@@ -118,7 +118,7 @@ if (isset($_SESSION['user'])) {
     <p class="text-3xl text-center italic  ">GENCE - THỜI TRANG CÔNG SỞ</p>
 </div> <!-- End .p_shop-->
 
-<section class="content w-full px-4 mt-8 mx-auto ">
+<section class="content w-full px-2 mt-8 mx-auto ">
     <div class="grid grid-cols-5 gap-x-4 gap-y-6">
         <?php foreach ($new_pro as $pro) { ?>
             <div class="content-item min-h-[480px] text-center space-y-2 overflow-hidden box-border relative ">
@@ -153,9 +153,20 @@ if (isset($_SESSION['user'])) {
                         Giá KM
                     </p> -->
                 </div>
-                <button class="add-to-cart w-full py-2 rounded-[4px] border font-[500] text-center hover:bg-[#FFA07A] hover:text-white">
+                <form action="index.php?act=addToCart" method="POST">
+                    <input type="hidden" name="pro_id" value="<?php echo $pro['pro_id']?>">
+                    <input type="hidden" name="pro_name" value="<?php echo $pro['pro_name']?>">
+                    <input type="hidden" name="pro_image" value="<?php echo $pro['pro_image']?>">
+                    <input type="hidden" name="pro_price" value="<?php echo $pro['pro_price']?>">
+                    <input type="hidden" name="pro_quantity" value="1">
+                    <input 
+                        class="add-to-cart w-full py-2 rounded-[4px] border font-[500] text-center hover:bg-[#FFA07A] hover:text-white cursor-pointer"
+                        type="submit" value="Buy Now" name="add_to_cart"
+                    >
+                </form>
+                <!-- <button class="add-to-cart w-full py-2 rounded-[4px] border font-[500] text-center hover:bg-[#FFA07A] hover:text-white">
                     Buy Now
-                </button>
+                </button> -->
             </div>
             <!-- End .content-item-->
         <?php 
