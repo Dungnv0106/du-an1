@@ -28,7 +28,7 @@
             <p class="p-4 text-5xl text-[#F54748] bg-[#FFC0CB] rounded-md">QUẢN TRỊ WEBSITE</p>
             <div class="menu my-6 py-2 text-red-800 bg-[#FFC0CB] rounded-md">
                 <nav>
-                    <ul class="pl-4 flex items-center space-x-10 text-xl ">
+                    <ul class=" flex items-center space-x-5 text-xl ">
                         <li class="hover:underline">
                             <a href="index_admin.php">Trang Chủ</a>
                         </li>
@@ -45,7 +45,13 @@
                             <a href="index_admin.php?act=comment">Bình Luận</a>
                         </li>
                         <li class="hover:underline">
+                            <a href="index_admin.php?act=list_bill">Quản lý đơn hàng</a>
+                        </li>
+                        <li class="hover:underline">
                             <a href="index_admin.php?act=statistic">Thống Kê</a>
+                        </li>
+                        <li class="hover:underline">
+                            <a href="index_admin.php?act=chart">Biểu Đồ</a>
                         </li>
                     </ul>
                 </nav>

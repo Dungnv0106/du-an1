@@ -4,6 +4,52 @@
 // show_array($cate_name);    
 // show_array($categoryName)
 ?>
+
+<style>
+    .add-to-cart {
+        opacity: 0;
+        transform: translateY(40px);
+        transition: 0.3s all;
+
+    }
+
+    .content-item:hover .add-to-cart {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .view-detail {
+        opacity: 0;
+        transform: translateY(40px);
+        transition: 0.3s all;
+        bottom: 0px;
+        left: 90px
+    }
+
+    .content-item--image:hover .view-detail {
+        opacity: 1;
+        transform: translateY(0);
+
+    }
+    .slideshow {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    /* overflow: hidden; */
+    }
+
+    .slideshow img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+    }
+
+    .slideshow img.active {
+    opacity: 1;
+    }
+</style>
 <!-- 
     echo ($cate['cate_id'] == $_GET['cate_id']) ? $cate['cate_name'] : ""
  -->
@@ -43,28 +89,54 @@
 
             foreach ($list_product as $pro) {
                 ?>
-                <div class="content-item min-h-[380px] text-center space-y-2 ">
-                    <a href="index.php?act=detail_pro&pro_id=<?php echo $pro['pro_id'] ?>">
-                        <img class="w-full h-[240px]  bg-clip-padding bg-gray-200"
-                            src="<?php echo substr($pro['pro_image'], 3); ?>" alt="">
+                <div class="content-item min-h-[400px] text-center space-y-2 overflow-hidden box-border relative ">
+                <div class="content-item--image relative text-center">
+                    <a class="" href="index.php?act=detail_pro&pro_id=<?php echo $pro['pro_id'] ?>">
+                        <img title="<?php echo $pro['pro_name'] ?>" 
+                            class="w-full rounded-md bg-clip-padding bg-gray-200 duration-500 hover:scale-x-105 hover:scale-y-105" 
+                            src="<?php echo substr($pro['pro_image'], 3); ?>" alt="No Image"
+                        >
                     </a>
-                    <p class="text-slate-400 ">
-                        <?php foreach ($list_cate as $cate) {
-                            echo ($cate['cate_id'] == $pro['cate_id'] ? $cate['cate_name'] : ""); // Hiển thị category
-                        } ?>
-                    </p>
+                    <a class="view-detail absolute mx-auto text-center" href="index.php?act=detail_pro&pro_id=<?php echo $pro['pro_id'] ?>">
+                        <img class="border border-white-400 bg-[#FFFFFF] hover:bg-[#EEEEEE] rounded-[4px] px-4 py-1" title="View Detail" src="./asset/icon/eye-fill.svg" alt="">
+                    </a>
+                    
+                </div >
+                <div class="min-h-[120px]">
+
+                    <p class="text-slate-400"><?php foreach ($list_cate as $cate) {
+                                                    echo ($cate['cate_id'] == $pro['cate_id'] ? $cate['cate_name'] : ""); // Hiển thị category
+                                                } ?></p>
                     <!-- <p><?php echo ($list_cate['cate_id'] == $pro['cate_id'] ? $list_cate['cate_name'] : "") ?></p> -->
+
                     <a href="index.php?act=detail_pro&pro_id=<?php echo $pro['pro_id'] ?>">
-                        <p class="text-teal-800 text-xl fold-semibold  ">
-                            <?php echo $pro['pro_name'] ?>
-                        </p>
+                        <p class="text-teal-800 text-[17px] fold-semibold text-center "><?php echo $pro['pro_name'] ?></p>
                     </a>
 
-                    <p class="px-2 text-red-600 font-bold">
-                        <?php echo $pro['pro_price'] . " đ" ?>
+                    <p class="text-red-600 font-[500] mt-2  ">
+                        <?php echo number_format($pro['pro_price'], 0, ',', '.') ?> <span class="underline text-sm ml-[3px] absolute">đ</span>
                     </p>
 
-                </div> <!-- End .content-item-->
+                    <!-- <p class="px-2  ">
+                        Giá KM
+                    </p> -->
+                </div>
+                <form action="index.php?act=addToCart" method="POST">
+                    <input type="hidden" name="pro_id" value="<?php echo $pro['pro_id']?>">
+                    <input type="hidden" name="pro_name" value="<?php echo $pro['pro_name']?>">
+                    <input type="hidden" name="pro_image" value="<?php echo $pro['pro_image']?>">
+                    <input type="hidden" name="pro_price" value="<?php echo $pro['pro_price']?>">
+                    <input type="hidden" name="pro_quantity" value="1">
+                    <input 
+                        class="add-to-cart w-full py-2 rounded-[4px] border font-[500] text-center hover:bg-[#FFA07A] hover:text-white cursor-pointer"
+                        type="submit" value="Buy Now" name="add_to_cart"
+                    >
+                </form>
+                <!-- <button class="add-to-cart w-full py-2 rounded-[4px] border font-[500] text-center hover:bg-[#FFA07A] hover:text-white">
+                    Buy Now
+                </button> -->
+            </div>
+            <!-- End .content-item-->
                 <?php
             }
         }

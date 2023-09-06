@@ -4,6 +4,51 @@
 // show_array($list_cate);
 ?>
 <!-- jquery -->
+<style>
+    .add-to-cart {
+        opacity: 0;
+        transform: translateY(40px);
+        transition: 0.3s all;
+
+    }
+
+    .content-item:hover .add-to-cart {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .view-detail {
+        opacity: 0;
+        transform: translateY(40px);
+        transition: 0.3s all;
+        bottom: 0px;
+        left: 90px
+    }
+
+    .content-item--image:hover .view-detail {
+        opacity: 1;
+        transform: translateY(0);
+
+    }
+    .slideshow {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    /* overflow: hidden; */
+    }
+
+    .slideshow img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+    }
+
+    .slideshow img.active {
+    opacity: 1;
+    }
+</style>
 <div class="container max-w-full  ">
     <div class="content w-5/6 mt-10 mx-auto grid grid-cols-[50%50%]">
         <div class="image_pro">
@@ -30,7 +75,7 @@
                 <p><span class="font-[500]">Xuất sứ:</span> Gence Việt Nam - Da thật, Giá trị thật</p>
                 <p><span class="font-[500]">Mã SP:</span> <?php echo $detail_pro['pro_id'] ?></p>
                 <p><span class="font-[500]">Chất liệu:</span> <?php echo $detail_pro['chat_lieu'] ?></p>
-                <p><span class="font-[500]">Lượt xem:</span> <?php echo $detail_pro['pro_view'] ?></p>
+                <p><span class="font-[500]">Kho:</span> <?php echo $detail_pro['pro_quantity'] ?></p>
                 <p><span class="font-[500]">Cam kết:</span> Chúng tôi sẽ hoàn tiền nếu túi không phải là da và không
                     giống như hình chụp</p>
                 <!-- <p><span class="font-[500]">Mô tả:</span> <?php echo $detail_pro['pro_desc'] ?></p> -->
@@ -63,11 +108,11 @@
         </div>
     </div>
     <!-- End .comment -->
-    <div class="similar_pro w-5/6 mt-10 mx-auto">
+    <div class="similar_pro w-[95%] my-10 mx-auto">
         <p class="text-[22px] font-bold text-gray-700 mb-5">SẢN PHẨM TƯƠNG TỰ</p>
         <div class="grid grid-cols-5 gap-4">
             <?php foreach ($similar_pro as $pro) { ?>
-                <div class="item text-center space-y-2">
+                <!-- <div class="item text-center space-y-2">
                     <a href="index.php?act=detail_pro&pro_id=<?php echo $pro['pro_id'] ?>" class="h-[300px]">
                         <img class="w-full h-[230px] mb-2 " src="<?php echo substr($pro['pro_image'], 3) ?>" alt="">
                     </a>
@@ -75,7 +120,56 @@
                         <span class="px-3 font-[500] text-[20px] text-teal-800"><?php echo $pro['pro_name'] ?></span>
                     </a>
                     <p class="font-[600] text-red-500 "><?php echo $pro['pro_price'] ?> <u>đ</u></p>
-                </div><!-- End .item-->
+                </div> -->
+                <!-- End .item-->
+                <div class="content-item min-h-[400px] text-center space-y-2 overflow-hidden box-border relative ">
+                <div class="content-item--image relative text-center">
+                    <a class="" href="index.php?act=detail_pro&pro_id=<?php echo $pro['pro_id'] ?>">
+                        <img title="<?php echo $pro['pro_name'] ?>" 
+                            class="w-full rounded-md bg-clip-padding bg-gray-200 duration-500 hover:scale-x-105 hover:scale-y-105" 
+                            src="<?php echo substr($pro['pro_image'], 3); ?>" alt="No Image"
+                        >
+                    </a>
+                    <a class="view-detail absolute mx-auto text-center" href="index.php?act=detail_pro&pro_id=<?php echo $pro['pro_id'] ?>">
+                        <img class="border border-white-400 bg-[#FFFFFF] hover:bg-[#EEEEEE] rounded-[4px] px-4 py-1" title="View Detail" src="./asset/icon/eye-fill.svg" alt="">
+                    </a>
+                    
+                </div >
+                <div class="min-h-[120px]">
+
+                    <p class="text-slate-400"><?php foreach ($list_cate as $cate) {
+                                                    echo ($cate['cate_id'] == $pro['cate_id'] ? $cate['cate_name'] : ""); // Hiển thị category
+                                                } ?></p>
+                    <!-- <p><?php echo ($list_cate['cate_id'] == $pro['cate_id'] ? $list_cate['cate_name'] : "") ?></p> -->
+
+                    <a href="index.php?act=detail_pro&pro_id=<?php echo $pro['pro_id'] ?>">
+                        <p class="text-teal-800 text-[17px] fold-semibold text-center "><?php echo $pro['pro_name'] ?></p>
+                    </a>
+
+                    <p class="text-red-600 font-[500] mt-2  ">
+                        <?php echo number_format($pro['pro_price'], 0, ',', '.') ?> <span class="underline text-sm ml-[3px] absolute">đ</span>
+                    </p>
+
+                    <!-- <p class="px-2  ">
+                        Giá KM
+                    </p> -->
+                </div>
+                <form action="index.php?act=addToCart" method="POST">
+                    <input type="hidden" name="pro_id" value="<?php echo $pro['pro_id']?>">
+                    <input type="hidden" name="pro_name" value="<?php echo $pro['pro_name']?>">
+                    <input type="hidden" name="pro_image" value="<?php echo $pro['pro_image']?>">
+                    <input type="hidden" name="pro_price" value="<?php echo $pro['pro_price']?>">
+                    <input type="hidden" name="pro_quantity" value="1">
+                    <input 
+                        class="add-to-cart w-full py-2 rounded-[4px] border font-[500] text-center hover:bg-[#FFA07A] hover:text-white cursor-pointer"
+                        type="submit" value="Buy Now" name="add_to_cart"
+                    >
+                </form>
+                <!-- <button class="add-to-cart w-full py-2 rounded-[4px] border font-[500] text-center hover:bg-[#FFA07A] hover:text-white">
+                    Buy Now
+                </button> -->
+            </div>
+            <!-- End .content-item-->
             <?php } ?>
         </div>
     </div> <!-- End .similar_pro -->

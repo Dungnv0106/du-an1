@@ -118,10 +118,10 @@ if (isset($_SESSION['user'])) {
     <p class="text-3xl text-center italic  ">GENCE - THỜI TRANG CÔNG SỞ</p>
 </div> <!-- End .p_shop-->
 
-<section class="content w-full px-2 mt-8 mx-auto ">
-    <div class="grid grid-cols-5 gap-x-4 gap-y-6">
+<section class="content w-full px-2 mt-8 mx-auto mb-10">
+    <div class="grid grid-cols-5 gap-x-4">
         <?php foreach ($new_pro as $pro) { ?>
-            <div class="content-item min-h-[480px] text-center space-y-2 overflow-hidden box-border relative ">
+            <div class="content-item min-h-[400px] text-center space-y-2 overflow-hidden box-border relative ">
                 <div class="content-item--image relative text-center">
                     <a class="" href="index.php?act=detail_pro&pro_id=<?php echo $pro['pro_id'] ?>">
                         <img title="<?php echo $pro['pro_name'] ?>" 

@@ -36,7 +36,7 @@
                 </p>
             </div>
         </div>
-        <div class="mt-8 sm:text-xl md:text-base">
+        <div class="my-8 sm:text-xl md:text-base">
             <form action="index.php?act=signup" method="post" autocomplete="true">
                 <div class="email">
                     <label for="email" class="block text-slate-600 font-[600]">Email</label>
@@ -68,7 +68,7 @@
             </form>
             <?php if (isset($thong_bao)) {
                 echo $thong_bao;
-                header("location:index.php");
+                // header("location:index.php");
             }
 
             ?>

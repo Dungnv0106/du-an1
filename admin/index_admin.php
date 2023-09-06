@@ -6,6 +6,7 @@
     include "../model/model_product.php";
     include "../model/model_user.php";
     include "../model/model_comment.php";
+    include "../model/cart.php";
     include "header.php";
     
 // Controller
@@ -207,6 +208,24 @@
                 $list_user = queryAllUser(); 
                 $list_pro = queryAllPro('', 0);
                 include "./comments/list_comment.php";
+                break;
+            case 'list_bill': 
+                // $list_pro = queryAllPro('', 0);
+                if(isset($_POST['search_bill'])){
+                    $key_word = $_POST['key_word'];
+                } else{
+                    $key_word = "";
+                }
+                $list_bill = getAllBill($key_word , 0);
+                include "./bills/list_bill.php";
+                break;
+            case 'statistic': 
+                $list_statistic = thong_ke();
+                include "./statistic/list.php";
+                break;
+            case 'chart': 
+                $list_statistic = thong_ke();
+                include './statistic/chart.php';    
                 break;
             default:
                 include "body.php";
