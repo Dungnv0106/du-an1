@@ -223,6 +223,10 @@
                 $list_statistic = thong_ke();
                 include "./statistic/list.php";
                 break;
+            case 'chart': 
+                $list_statistic = thong_ke();
+                include './statistic/chart.php';    
+                break;
             default:
                 include "body.php";
                 break;
