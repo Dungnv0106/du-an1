@@ -106,4 +106,9 @@ function thong_ke() {
     return $list_statistic;
 }
 
+function deleteOneBill($bill_id) {
+    $sql = "DELETE FROM `bill` WHERE `bill_id` = '{$bill_id}' ";
+    connect($sql);
+}
+
 ?>
