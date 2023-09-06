@@ -45,6 +45,9 @@
                             <a href="index_admin.php?act=comment">Bình Luận</a>
                         </li>
                         <li class="hover:underline">
+                            <a href="index_admin.php?act=list_bill">Quản lý đơn hàng</a>
+                        </li>
+                        <li class="hover:underline">
                             <a href="index_admin.php?act=statistic">Thống Kê</a>
                         </li>
                     </ul>

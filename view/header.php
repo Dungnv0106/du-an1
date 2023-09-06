@@ -1,13 +1,3 @@
-<?php
-
-if (isset($_SESSION['list_cate'])) {
-    // show_array($_SESSION['list_cate']);
-}
-if (isset($_SESSION['user'])) {
-    // show_array($_SESSION['user']);
-}
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -164,32 +154,12 @@ if (isset($_SESSION['user'])) {
                                     foreach ($_SESSION['list_cate'] as $cate) {
                                         ?>
                                         <li class="hover:bg-[#E8E8E8]"><a
-                                            href="index.php?act=list_product&cate_id=<?php echo $cate['cate_id'] ?>"><?php echo $cate['cate_name'] ?></a></li>
+                                                href="index.php?act=list_product&cate_id=<?php echo $cate['cate_id'] ?>"><?php echo $cate['cate_name'] ?></a></li>
                                         <?php
                                     }
                                     ?>
                                 </ul>
-                            <!-- </li>
-                            <li class="has-submenu relative">
-                                <a class="underline-animation flex items-center" href="#">
-                                    Top 10 Yêu Thích
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                        class="bi bi-chevron-compact-down ml-2" viewBox="0 0 16 16">
-                                        <path fill-rule="evenodd"
-                                            d="M1.553 6.776a.5.5 0 0 1 .67-.223L8 9.44l5.776-2.888a.5.5 0 1 1 .448.894l-6 3a.5.5 0 0 1-.448 0l-6-3a.5.5 0 0 1-.223-.67z" />
-                                    </svg>
-                                </a>
-                                <ul class="submenu">
-                                    <?php
-                                    foreach ($_SESSION['list_cate'] as $cate) {
-                                        ?>
-                                        <li class="hover:bg-[#E8E8E8]"><a
-                                            href="index.php?act=list_product&cate_id=<?php echo $cate['cate_id'] ?>"><?php echo $cate['cate_name'] ?></a></li>
-                                        <?php
-                                    }
-                                    ?>
-                                </ul>
-                            </li> -->
+
                             <li class="">
                                 <a href="index.php?act=list_product" class="flex space-x-2 items-center">
                                     <p class="underline-animation">Sản Phẩm</p>
@@ -207,22 +177,8 @@ if (isset($_SESSION['user'])) {
                 </nav>
                 <form class="search" action="index.php?act=list_product" method="POST">
                     <div class="search-container relative ml-6 flex items-center space-x-1 ">
-                        <!-- <input 
-                            type="text" placeholder="Search..." title="Tìm kiếm sản phẩm" name="cate_name"
-                            class="search-input border rounded-[20px] px-2 py-1 text-sm"
-                        > -->
-                        <!-- <input class="search-icon w-0" name="search_cate_name" type="submit" value="Tìm Kiếm" > -->
-                        <!-- <svg  xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="hover:cursor-pointer  bi bi-search" viewBox="0 0 16 16">
-                                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
-                            </svg> -->
-                        <!-- </input> -->
-
                         <input class="border rounded-[20px] px-2 py-1 text-sm " title="Tìm kiếm sản phẩm"
                             name="cate_name" placeholder="Search..." />
-                        <!-- <input 
-                            class="border px-2 rounded-[20px] border border-gray-400 hover:bg-[#E8E8E8]" 
-                            type="submit" name="search_cate_name" 
-                        > -->
                         <button type="submit" name="search_cate_name">
                             <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
                                 class="hover:cursor-pointer  bi bi-search" viewBox="0 0 16 16">
@@ -246,6 +202,7 @@ if (isset($_SESSION['user'])) {
                             class="flex items-center space-x-2 px-2 rounded-[20px] border border-gray-400 hover:bg-[#E8E8E8]">
                             <p class="">Đăng ký</p>
                         </a>
+
                         <?php
                     } else {
                         ?>
@@ -268,18 +225,22 @@ if (isset($_SESSION['user'])) {
                                     </svg>
                                 </a>
                                 <ul class="submenu logout">
+                                    <li>
+                                        <a href="index.php?act=my_bill" class="hover:bg-[#E8E8E8]">
+                                            Đơn hàng của tôi
+                                        </a>
+                                    </li>
                                     <li class="">
                                         <a href="index.php?act=logout" class="hover:bg-[#E8E8E8]">
                                             <p class="">Đăng Xuất</p>
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="index.php?act=forget_pass"
-                                            class="hover:bg-[#E8E8E8]">Quên mật khẩu?</a>
+                                        <a href="index.php?act=forget_pass" class="hover:bg-[#E8E8E8]">Quên mật khẩu?</a>
                                     </li>
                                     <li>
-                                        <a href="index.php?act=edit_account"
-                                            class="hover:bg-[#E8E8E8]">Cài đặt tài khoản</a>
+                                        <a href="index.php?act=edit_account" class="hover:bg-[#E8E8E8]">Cài đặt tài
+                                            khoản</a>
                                     </li>
                                 </ul>
                             </li>

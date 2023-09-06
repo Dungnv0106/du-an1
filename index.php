@@ -6,22 +6,24 @@ include "./model/model_category.php";
 include "./model/model_product.php";
 include "./model/model_user.php";
 include "./model/model_comment.php";
+include "./model/cart.php";
 include "./view/header.php";
 $url = substr($_SERVER['REQUEST_URI'], 8);
 // echo $url;
-if($url == 'index.php') {
+if ($url == 'index.php') {
     // include "./view/header.php";
 } else {
 
 }
-if(isset($_GET['act']) && !empty($_GET['act'])) {
-    if( $_GET['act'] == 'signup') {
+if (isset($_GET['act']) && !empty($_GET['act'])) {
+    if ($_GET['act'] == 'signup') {
 
     } else {
     }
 }
 
 // echo $_SERVER['HTTP_REFERER'];
+// echo $_SERVER['REQUEST_URI'];
 
 // Mã JavaScript cần nhúng
 $javascriptCode = "
@@ -39,7 +41,7 @@ if (isset($_GET['act']) && !empty($_GET['act'])) {
     $act = $_GET['act'];
 
     switch ($act) {
-        
+
         // case '': 
         //     include "view/body.php";
         //     break;
@@ -160,7 +162,13 @@ if (isset($_GET['act']) && !empty($_GET['act'])) {
                 $pro_id = $_POST['pro_id'];
                 $user_id = $_SESSION['user']['user_id'];
                 $comment_date = date('d/m/Y h:i a');
-                add_comment($content, $user_id, $pro_id, $comment_date);
+                $count = checkUserInComment($user_id, $pro_id);
+                echo "count :" .$count;
+                if ($count > 0) {
+                    echo "<p>Bạn chỉ được phép bình luận một lần.</p>";
+                } else {
+                    add_comment($content, $user_id, $pro_id, $comment_date);
+                }
                 // header("Location: index.php?act=detail_pro&pro_id=".$pro_id);
             }
             include "view/comments/comment_form.php";
@@ -206,12 +214,54 @@ if (isset($_GET['act']) && !empty($_GET['act'])) {
                 }
             } else {
                 echo "<script>$javascriptCode</script>";
+                // header("Location: Http://localhost/du-an1/index.php?act=signup");
                 return;
             }
             include 'view/cart/cart.php';
             break;
-        case 'bill': 
+        case 'bill':
             include 'view/cart/bill.php';
+            break;
+        case 'checkout':
+            if (isset($_POST['order'])) {
+                if (isset($_SESSION['user'])) {
+                    $user_id = $_SESSION['user']['user_id'];
+                } else {
+                    $user_id = 0;
+                }
+                $name = $_POST['fullName'];
+                $email = $_SESSION['user']['user_email'];
+                $phoneNumber = $_POST['phoneNumber'];
+                $bill_pttt = $_POST['pttt'];
+                $address = $_POST['address'];
+                $ngayMuaHang = date('d/m/Y h:i a');
+                $tongDonHang = tongDonHang();
+                // tạo bill
+                $bill_id = add_bill($name, $address, $phoneNumber, $email, $bill_pttt, $ngayMuaHang, $tongDonHang, $user_id);
+                // insert into table cart
+                // echo "bill id = " .$bill_id;
+                foreach ($_SESSION['cart'] as $cart) {
+                    addCart(
+                        $_SESSION['user']['user_id'],
+                        $cart['pro_id'],
+                        $cart['pro_image'],
+                        $cart['pro_name'],
+                        $cart['pro_price'],
+                        $cart['pro_quantity'],
+                        $cart['total'],
+                        $bill_id,
+                    );
+                }
+                // $_SESSION['cart'] = [];
+            }
+            $oneBill = getOneBill($bill_id);
+            include 'view/cart/checkout.php';
+            $_SESSION['cart'] = [];
+
+            break;
+        case 'my_bill':
+            $list_bill = getAllBill("",$_SESSION['user']['user_id']);
+            include 'view/cart/mybill.php';
             break;
         case 'introduction':
             include "view/introduction.php";

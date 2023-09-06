@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th9 02, 2023 lúc 04:47 AM
+-- Thời gian đã tạo: Th9 06, 2023 lúc 05:33 AM
 -- Phiên bản máy phục vụ: 10.4.28-MariaDB
 -- Phiên bản PHP: 8.0.28
 
@@ -91,7 +91,9 @@ INSERT INTO `products` (`pro_id`, `pro_name`, `pro_price`, `pro_image`, `pro_qua
 (36, 'Cặp da nam cao cấp khóa số CGL08', 3200000, '../upload/cap-da-nam-cao-cap-khoa-so-cgl08-den-1.webp', 100, 'Cặp da doanh nhân CGL08 Gence là sự lựa chọn hàng đầu của quý ông hiện đại. Từ kiểu dáng thiết kế cho tới công năng sử dụng, CGL08 đều “ăn đứt” các sản phẩm cặp da nam khác. CGL08 không chỉ là một chiếc cặp da nam đơn thuần, nó còn là “người trợ lý” đáng tin cậy trong công việc và cuộc sống.', 'Da bò vân Taiga', 0, 52),
 (37, 'Cặp xách nam khóa số cao cấp da bò Taiga CGL10 ghi', 3200000, '../upload/cap-xach-nam-khoa-so-cao-cap-da-bo-taiga-cgl10-ghi-1.webp', 20, 'CGL10 với thiết kế hình chữ nhật nằm ngang nhanh chóng chiếm được thiện cảm của phái mạnh. Với form dáng này, khoảng chứa đồ vật sẽ được tận dụng một cách tối đa.\r\n\r\nLà một trong số ít sản phẩm có màu xám, CGL10 được chủ tịch, giám đốc bệnh viện mệnh Mộc, mệnh Kim “săn đón”. Màu xám thể hiện sự tối cao, công lý, mang đến cho họ sự bình an và tài lộc trong công việc, cuộc sống.', '	Da bò Taiga', 0, 52),
 (38, 'Cặp xách nam khóa số cao cấp da bò Taiga CGL09 đen', 3400000, '../upload/cap-xach-nam-khoa-so-cao-cap-da-bo-taiga-cgl09-1.webp', 50, 'Những đường gân lá kim tạo nên sự khác biệt trên bề mặt da CGL09. Vẻ đẹp thời thượng của CGL09 nhờ những đường gân độc đáo này được phái mạnh đánh giá cao.\r\n\r\nLogo Gence với màu sắc sáng bóng nằm nổi bật trên nền đen chủ đạo. Logo làm từ hợp kim không gỉ như họa tiết trang trí làm CGL09 khác biệt với những thương hiệu khác. Nó cũng như một lời cam kết chất lượng đến tay khách hàng tin tưởng sử dụng.', 'Da bò Taiga', 0, 52),
-(39, 'Cặp xách nam khóa số cao cấp da bò Nappa CTS11', 3200000, '../upload/cap-xach-nam-khoa-so-da-bo-nappa-cts11-1.webp', 15, 'Cặp da công sở có khóa số CTS11 thiết kế đơn giản nhưng vẫn toát lên vẻ sang trọng. Được chế tác bằng chất xám của các nhà thiết kế tài hoa Việt Nam mang kiểu sáng Âu - Á hài hòa.\r\n\r\nĐường khâu ngay ngắn, đều đặn không chỉ thừa chứng tỏ sự chuyên nghiệp, tỉ mỉ trong khâu sản xuất. Đặc biệt các mũi chỉ chắc chắn, dầy dặn ở các mép cạnh đảm bảo sự bền chắc theo thời gian.', '	Da bò Nappa', 0, 52);
+(39, 'Cặp xách nam khóa số cao cấp da bò Nappa CTS11', 3200000, '../upload/cap-xach-nam-khoa-so-da-bo-nappa-cts11-1.webp', 15, 'Cặp da công sở có khóa số CTS11 thiết kế đơn giản nhưng vẫn toát lên vẻ sang trọng. Được chế tác bằng chất xám của các nhà thiết kế tài hoa Việt Nam mang kiểu sáng Âu - Á hài hòa.\r\n\r\nĐường khâu ngay ngắn, đều đặn không chỉ thừa chứng tỏ sự chuyên nghiệp, tỉ mỉ trong khâu sản xuất. Đặc biệt các mũi chỉ chắc chắn, dầy dặn ở các mép cạnh đảm bảo sự bền chắc theo thời gian.', '	Da bò Nappa', 0, 52),
+(40, 'Túi xách tay nữ Gence cao cấp TX12 vàng', 1600000, '../upload/tui-xach-tay-nu-gence-cao-cap-tx12-vang-1.webp', 26, 'Dây đeo có thể dễ dàng điều chỉnh ngắn dài để phù hợp với nhu cầu của phái đẹp. Mối nối giữa dây đeo và thân túi mạ vàng sáng bóng được làm cẩn thận bởi những người thợ tài hoa. Vì thế, tình trạng đứt dây khi sử dụng TX12 là điều hầu như không xảy ra.\r\n\r\nTay cầm TX12 với bản ngang vừa đủ đảm bảo sự chắc chắn, vừa tôn lên vẻ đẹp của người dùng. Tay cầm và dây đeo được linh hoạt sử dụng tùy theo trang phục phối cùng.', '	Da Bò Clemence', 0, 55),
+(41, 'Túi xách tay nữ Gence cao cấp TX11 xanh blue', 1600000, '../upload/tui-xach-tay-nu-gence-cao-cap-tx11-xanh-1.webp', 56, 'Chất liệu da dùng làm thân túi cũng được sử dụng làm dây đeo và tay cầm. Bởi Gence coi trọng từng chi tiết để tạo nên túi xách đi làm công sở hoàn mỹ nhất.\r\n\r\nDây đeo có thể dễ dàng điều chỉnh độ dài để phù hợp với kích cỡ cơ thể mỗi người phụ nữ. Mối nối dây đeo và thân túi được mạ vàng sáng bóng bởi những nghệ nhân tài ba. Nhờ thế, tình trạng đứt dây rất hiếm khi xảy ra khi sử dụng TX11.', 'Da Bò Clemence', 0, 55);
 
 -- --------------------------------------------------------
 
@@ -164,7 +166,7 @@ ALTER TABLE `comments`
 -- AUTO_INCREMENT cho bảng `products`
 --
 ALTER TABLE `products`
-  MODIFY `pro_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+  MODIFY `pro_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
 -- AUTO_INCREMENT cho bảng `users`

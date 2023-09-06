@@ -20,4 +20,13 @@
         $sql = "DELETE FROM `comments` WHERE `comment_id` = '{$comment_id}' ";
         connect($sql);
     }
+
+    function checkUserInComment($user_id, $pro_id) {
+        $connect = new PDO("mysql:host=localhost;dbname=du_an_mau2022;charset=utf8","root","");
+        $connect->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $sql = "SELECT COUNT(*) FROM `comments` 
+                WHERE user_id = '{$user_id}' AND pro_id = '{$pro_id}' ";
+        $count = $connect -> query($sql) -> fetchAll();
+        return $count;
+    }
 ?>    

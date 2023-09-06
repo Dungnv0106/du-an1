@@ -37,11 +37,13 @@ $list_comment = get_all_comment($pro_id);
             <?php
                 foreach ($list_comment as $comment) {
             ?>
-                    <div class="pl-3 flex items-center justify-between space-x-2">
+                    <div class="pl-3 flex items-center justify-between">
                         <span class="user_comment min-w-[90px] ">
-                            <h3 class="text-[20px] font-[500]"><?php echo $_SESSION['user']['user_name'] ?> :</h3>
+                            <h3 class=" font-[500]">
+                                <?php echo $_SESSION['user']['user_name'] ?> :
+                            </h3>
                         </span>
-                        <div class="message min-w-[850px]">
+                        <div class="message min-w-[750px]">
                             <p>
                                 <?php echo $comment['content'] ?>
                             </p>
