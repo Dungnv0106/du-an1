@@ -48,7 +48,6 @@ $condition = false;
                 </td>
                 <td class=" text-center hover:bg-[#FFEEEE]"><?php echo $comment['comment_date'] ?></td>
                 <td class="text-center">
-                    <!-- <a href="index_admin.php?act=edit_comment&user_id=<?php echo $comment['user_id'] ?>">Sửa</a> -->
                     <a onclick="return confirm('Bạn có chắc chắn muốn xóa?')" href="index_admin.php?act=delete_comment&comment_id=<?php echo $comment['comment_id'] ?>">Xóa</a>
                 </td>
             </tr>

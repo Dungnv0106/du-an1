@@ -67,7 +67,6 @@ $condition = false;
                 </td>
 
                 <td class="text-center">
-                    <!-- <a href="index_admin.php?act=edit_bill&user_id=<?php echo $bill['user_id'] ?>">Sửa</a> -->
                     <a onclick="return confirm('Bạn có chắc chắn muốn xóa?')"
                         href="index_admin.php?act=delete_bill&bill_id=<?php echo $bill['bill_id'] ?>">Xóa</a>
                 </td>

@@ -47,4 +47,30 @@
         $sql = "DELETE FROM `users` ";
         connect($sql);
     }
+    // 
+    function layChuTrongEmail($email) {
+        $parts = explode('@', $email);
+        $chu = $parts[0]; // Phần chữ trước ký tự @
+        return $chu;
+    }
+
+    function emailExist($email) {
+        $sql = "SELECT * FROM `users` WHERE user_email LIKE '%{$email}%'";
+        $emailExist = getAll($sql);
+        return $emailExist;
+    }
+
+    function getAllEmail() {
+        $sql = "SELECT user_email FROM `users` WHERE 1";
+        $listEmail = getAll($sql);
+        return $listEmail;
+    }
+    function kiemTraEmail($listEmail, $oneEmail) {
+        foreach ($listEmail as $email) {
+            if (in_array($oneEmail, $email)) {
+                return true;
+            }
+        }
+        return false;
+    }
 ?>
