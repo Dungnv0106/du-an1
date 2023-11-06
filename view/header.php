@@ -212,6 +212,7 @@
                                 <path
                                     d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1H.5zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zM9 5.5V7h1.5a.5.5 0 0 1 0 1H9v1.5a.5.5 0 0 1-1 0V8H6.5a.5.5 0 0 1 0-1H8V5.5a.5.5 0 0 1 1 0z" />
                             </svg>
+
                         </a>
 
 
@@ -219,28 +220,26 @@
                             <li class="has-submenu relative">
                                 <a class="underline-animation flex items-center" href="#">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
-                                        class="bi bi-person" viewBox="0 0 16 16">
+                                        class="bi bi-person" viewBox="0 0 16 16"
+                                        title="<?php echo $_SESSION['user']['user_name']?>"
+                                        >
                                         <path
                                             d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0Zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4Zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10Z" />
                                     </svg>
+                                    <span>
+                                        <?php echo $_SESSION['user']['user_name']  ?>
+                                    </span>
                                 </a>
                                 <ul class="submenu logout">
                                     <li>
-                                        <a href="index.php?act=my_bill" class="hover:bg-[#E8E8E8]">
-                                            Đơn hàng của tôi
+                                        <a href="index.php?act=account" class="hover:bg-[#E8E8E8]">
+                                            Tài khoản
                                         </a>
                                     </li>
                                     <li class="">
                                         <a href="index.php?act=logout" class="hover:bg-[#E8E8E8]">
                                             <p class="">Đăng Xuất</p>
                                         </a>
-                                    </li>
-                                    <li>
-                                        <a href="index.php?act=forget_pass" class="hover:bg-[#E8E8E8]">Quên mật khẩu?</a>
-                                    </li>
-                                    <li>
-                                        <a href="index.php?act=edit_account" class="hover:bg-[#E8E8E8]">Cài đặt tài
-                                            khoản</a>
                                     </li>
                                 </ul>
                             </li>

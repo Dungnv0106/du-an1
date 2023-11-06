@@ -33,6 +33,19 @@ function addCart($user_id, $pro_id, $pro_image, $pro_name, $pro_price, $pro_quan
     VALUES (NULL, '{$user_id}', '{$pro_id}', '{$pro_image}', '{$pro_name}', '{$pro_price}', '{$pro_quantity}', '{$total}', '{$bill_id}')";
     connect($sql);
 }
+// Kiểm tra sản phẩm trong giỏ hàng
+function kiemTraTonTai($productId, $cart)
+{
+    foreach ($cart as $item) {
+        if ($item['pro_id'] == $productId) {
+            // $item['pro_quantity'] += 1;
+            // $item['pro_price'] = $item['pro_price'] * $item['pro_quantity'];
+            // show_array($item);
+            return true; // Sản phẩm đã tồn tại trong giỏ hàng
+        }
+    }
+    return false; // Sản phẩm không tồn tại trong giỏ hàng
+}
 function getOneBill($bill_id)
 {
     $query_one_bill = "SELECT * FROM bill WHERE bill_id = '{$bill_id}'";

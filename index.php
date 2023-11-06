@@ -82,47 +82,59 @@ if (isset($_GET['act']) && !empty($_GET['act'])) {
 
         case 'signup':
             $error = [];
-            if (isset($_POST['sign_up'])) {
+            $listEmail = getAllEmail();
+            // show_array($listEmail);
+            $email;
+            $fullName;
+            $password;
+            $repass;
+            if (isset($_POST['sign_up']) && $_POST['sign_up']) {
                 $email = $_POST['email'];
                 $fullName = $_POST['fullName'];
                 $password = $_POST['password'];
                 $repass = $_POST['repass'];
-                //     if (empty($fullName) || $fullName === '' || $password === '' || $repass === '') {
-                //         $error['fullName'] = "<span class='mt-3 font-[500] text-red-500'>Vui lòng điền vào trường này</span>";
-                //         $error['password'] = "<span class='mt-3 font-[500] text-red-500'>Vui lòng nhập password</span>";
-                //         $error['repass'] = "<span class='mt-3 font-[500] text-red-500'>Vui lòng nhập lại password</span>";
-                //     } else if ($password !== $repass) {
-                //         $error['confirmPassword'] = "<span class='mt-3 font-[500] text-red-500'>Mật khẩu chưa khớp</span>";
-                //     } else {
+                // Kiểm tra email đã tồn tại hay chưa
+                if (kiemTraEmail($listEmail, $email) == 1) {
+                    $thong_bao = 'Email đã được đăng kí! Vui lòng chọn 1 email khác';
+                } else if ($password != $repass) {
+                    $thong_bao = 'Re-password chưa khớp';
 
-                //     }
-                // }
+                } else {
+                    add_user($email, $fullName, $password, $repass);
+                    $email = '';
+                    $fullName = '';
+                    $password = '';
+                    $repass = '';
+                    $thong_bao = 'Đăng kí tài khoản thành công';
 
-                add_user($email, $fullName, $password, $repass);
-                $thong_bao = "<span class='mt-3 font-[500] text-red-500'>Đăng kí tài khoản thành công. Vui lòng đăng nhập để mua hàng</span>";
-                // header("Location:".$_SERVER['HTTP_REFERER']);
+                }
+                // echo "email: " . $email . " " . $fullName . " " . $password . " " . $repass;
             }
-            include "view/account/signup.php";
 
+            include "view/account/signup.php";
             break;
         case 'signin':
             if (isset($_POST['sign_in']) && ($_POST['sign_in'])) {
                 $email = $_POST['email'];
                 $password = $_POST['password'];
                 $one_user = queryOneUser($email, $password);
+                // show_array($one_user);
                 if (is_array($one_user)) {
                     $_SESSION['user'] = $one_user;
-                    // setcookie('thong_bao', 'Xin chào ', time() + 5);
-                    $thong_bao = "<span class='text-red-500'>Đăng nhập thành công</span>";
-                    // header("location:index.php?act=''");
+                    $thong_bao = "Đăng nhập thành công";
                     // $_SESSION['thong_bao'] = "<span class='text-red-500'>Đăng nhập thành công</span>";
+                } else {
+                    $thong_bao = "Sai email hoặc password";
                 }
                 if (!isset($one_user)) {
-                    $_SESSION['error'] = "<span class='font-[500] text-red-500'>Tài khoản không tồn tại. Vui lòng kiểm tra lại hoặc đăng kí</span>";
+                    // $_SESSION['error'] = "<span class='font-[500] text-red-500'>Tài khoản không tồn tại. Vui lòng kiểm tra lại hoặc đăng kí</span>";
                     $thong_bao = "<span class='font-[500] text-red-500'>Tài khoản không tồn tại. Vui lòng kiểm tra lại hoặc đăng kí</span>";
                 }
             }
             include "view/account/signin.php";
+            break;
+        case 'account':
+            include "view/account/account.php";
             break;
         case 'forget_pass':
             if (isset($_POST['forget_pass']) && $_POST['forget_pass']) {
@@ -153,6 +165,7 @@ if (isset($_GET['act']) && !empty($_GET['act'])) {
             break;
         case 'logout':
             session_unset();
+            $log_out = "Đăng xuất thành công";
             // header("Location: index.php");
             include "view/body.php";
             break;
@@ -163,7 +176,7 @@ if (isset($_GET['act']) && !empty($_GET['act'])) {
                 $user_id = $_SESSION['user']['user_id'];
                 $comment_date = date('d/m/Y h:i a');
                 $count = checkUserInComment($user_id, $pro_id);
-                echo "count :" .$count;
+                echo "count :" . $count;
                 if ($count > 0) {
                     echo "<p>Bạn chỉ được phép bình luận một lần.</p>";
                 } else {
@@ -179,13 +192,13 @@ if (isset($_GET['act']) && !empty($_GET['act'])) {
             break;
         case 'addToCart':
             if (isset($_SESSION['user'])) {
-
                 if (isset($_POST['add_to_cart']) && $_POST['add_to_cart']) {
                     $pro_id = $_POST['pro_id'];
                     $pro_name = $_POST['pro_name'];
                     $pro_image = $_POST['pro_image'];
                     $pro_price = $_POST['pro_price'];
-                    $pro_quantity = $_POST['pro_quantity'] ? $_POST['pro_quantity'] : 0;
+                    // $pro_quantity = $_POST['pro_quantity'] ? $_POST['pro_quantity'] : 1;
+                    $pro_quantity = 1;
                     $total = $pro_price * $pro_quantity;
                     $oneProduct = [
                         'pro_id' => $pro_id,
@@ -195,25 +208,41 @@ if (isset($_GET['act']) && !empty($_GET['act'])) {
                         'pro_quantity' => $pro_quantity,
                         'total' => $total
                     ];
-                    // if (isset($_SESSION['cart'])) {
-                    //     $cart = $_SESSION['cart'];
-                    // } else {
-                    //     $cart = [];
-                    // }
                     if (!isset($_SESSION['cart'])) {
                         $_SESSION['cart'] = [];
                     }
+                    $one_pro = queryOnePro($pro_id);
+                    $cart = $_SESSION['cart'];
 
-                    // if (in_array($oneProduct, $_SESSION['cart'])) {
-                    //     $oneProduct['pro_quantity'] += 1;
-                    // } else {
-                    //     // array_push($_SESSION['cart'], $oneProduct);
-                    // }
-                    array_push($_SESSION['cart'], $oneProduct);
+                    function replaceProduct($item, $key, $replacement)
+                    {
+                        if (isset($item['pro_id']) && $item['pro_id'] == $replacement['pro_id']) {
+                            $item = $replacement;
+                            show_array($item);
+                            echo "Da vo day";
+                            // show_array($oneProduct);
+                        }
+                    }
 
+                    if (kiemTraTonTai($pro_id, $_SESSION['cart']) == 1) {
+                        $oneProduct['pro_quantity'] += 1;
+                        $oneProduct['total'] = $oneProduct['pro_quantity'] * $oneProduct['pro_price'];
+                        //  show_array($oneProduct);
+                        // Hàm callback để thay thế sản phẩm
+                        // Thay thế sản phẩm trong giỏ hàng
+                        array_walk_recursive($_SESSION['cart'], 'replaceProduct', $oneProduct);
+                        // show_array($oneProduct);
+                    } else {
+
+                        array_push($_SESSION['cart'], $oneProduct);
+                    }
+                    // show_array($oneProduct);
+
+                    ;
                 }
+                // show_array($_SESSION['cart']);
             } else {
-                echo "<script>$javascriptCode</script>";
+                echo "<script >$javascriptCode</script>";
                 // header("Location: Http://localhost/du-an1/index.php?act=signup");
                 return;
             }
@@ -260,7 +289,7 @@ if (isset($_GET['act']) && !empty($_GET['act'])) {
 
             break;
         case 'my_bill':
-            $list_bill = getAllBill("",$_SESSION['user']['user_id']);
+            $list_bill = getAllBill("", $_SESSION['user']['user_id']);
             include 'view/cart/mybill.php';
             break;
         case 'introduction':

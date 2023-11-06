@@ -63,29 +63,20 @@
                         </span>
                     </button> -->
                     
-                    <?php
+                    <?php 
                         if(isset($thong_bao)) {
-                            echo $thong_bao;
-                            // header("location:index.php");
-                        };
+                            $javascriptCode = "
+                                var message = '$thong_bao';
+                                alert(message);
+                            ";
+                            echo "<script>$javascriptCode</script>";
+                        }
                     ?>
                 </form>
-                <!-- <div class="mt-8 sm:text-2xl md:text-[18px] font-[700] text-[#37A9CD] text-center">
-                    <a href="">
-                        Forgot password?
-                    </a>
-                </div>
-                <div class="mt-4 text-center sm:text-2xl md:text-[18px] font-[700]">
-                    <span class=" text-[#616161]">
-                        Dont have an account?
-                    </span>
-                    <a href="" class="text-[#37A9CD]">
-                        Join free today
-                    </a>
-                </div> -->
             </div>
         </div>
-    </div><!-- End .container-->    
+    </div>
+    <!-- End .container-->    
 </body>
 
 </html>

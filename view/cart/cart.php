@@ -1,6 +1,12 @@
 <?php
 if (isset($_SESSION['cart'])) {
+    // echo "Giỏ hàng: ";
     // show_array($_SESSION['cart']);
+    // echo count($_SESSION['cart']);
+    if (isset($one_pro)) {
+
+        // show_array($one_pro);
+    }
     // print_r($_SESSION['cart']);
     // unset($_SESSION['cart']);
     $cart = $_SESSION['cart'];
@@ -57,9 +63,7 @@ if (isset($_POST['xoa_gio_hang'])) {
             Giỏ hàng
         </h2>
         <form method="post" action="">
-            <button type="submit" name="xoa_gio_hang"
-                class="border rounded-[5px] px-2"
-            >
+            <button type="submit" name="xoa_gio_hang" class="border rounded-[5px] px-2">
                 Xóa Giỏ Hàng
             </button>
         </form>
@@ -95,7 +99,7 @@ if (isset($_POST['xoa_gio_hang'])) {
                     <span class="flex">
                         <?php echo number_format($pro['pro_price'], 0, ',', '.') ?> <span class="text-sm underline">đ</span>
                     </span>
-                    <div class="mx-5 border flex items-center px-4 rounded-[3px] justify-around space-x-3">
+                    <!-- <div class="pro_quantity mx-5 border flex items-center px-4 rounded-[3px] justify-around space-x-3">
                         <button onclick="decreaseValue() ">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                 class="bi bi-dash" viewBox="0 0 16 16">
@@ -103,9 +107,8 @@ if (isset($_POST['xoa_gio_hang'])) {
                             </svg>
                         </button>
                         <span id="count">
-                            <?php
-                            echo $pro['pro_quantity'];
-                            ?>
+                            
+                           
                         </span>
                         <button onclick="increaseValue() ">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -114,7 +117,11 @@ if (isset($_POST['xoa_gio_hang'])) {
                                     d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
                             </svg>
                         </button>
-                    </div>
+                    </div> -->
+                    <!-- End .pro_quantity -->
+
+                    <input type="number" min="1" max="<?php echo $one_pro['pro_quantity'] ?>" placeholder="Số lượng"
+                        name="pro_quantity" value="<?php echo $pro['pro_quantity'] ?>" class="w-[100px] text-center pl-5">
                     <span class="flex">
                         <?php echo number_format($pro['pro_price'], 0, ',', '.') ?> <span class="text-sm underline">đ</span>
                     </span>
@@ -124,6 +131,19 @@ if (isset($_POST['xoa_gio_hang'])) {
             }
         }
         ?>
+        <?php
+        if (isset($_SESSION['cart']) && count($_SESSION['cart']) != 0) {
+            ?>
+            <div class="w-[200px] mt-4">
+                <form action="" method="POST">
+                    <input type="submit" value="Cập nhật giỏ hàng"
+                        class="border px-2 py-1 rounded-md hover:bg-gray-100 cursor-pointer">
+                </form>
+            </div>
+            <?php
+        }
+        ?>
+
         <div class="border p-4 mt-5 flex items-center justify-between rounded-sm">
             <span>
                 Tổng Thanh Toán:
@@ -133,11 +153,28 @@ if (isset($_POST['xoa_gio_hang'])) {
             </span>
         </div>
         <div class=" my-5">
-            <a href="index.php?act=bill"
-                class="mt-20 w-[200px] px-10 py-2 text-center border text-white bg-[#2f4858] rounded-md"
-            >
-                Đặt hàng
-            </a>
+            <?php
+            if (isset($_SESSION['cart']) && count($_SESSION['cart']) != 0) {
+                ?>
+                <a href="index.php?act=bill"
+                    class="mt-20 w-[200px] px-10 py-2 text-center border text-white bg-[#2f4858] rounded-md ">
+
+                    Đặt hàng
+                </a>
+
+                <?php
+            } else {
+                ?>
+
+                <span>
+                    Bạn chưa có sản phẩm nào trong giỏ hàng
+                </span>
+                <a href="index.php?act=list_product" class="text-blue-500">
+                    Mua ngay
+                </a>
+                <?php
+            }
+            ?>
         </div>
 
-</div>
+    </div>
